@@ -1,0 +1,326 @@
+.boot-stage {
+  position: relative;
+  isolation: isolate;
+}
+.boot-content,
+.boot-signature {
+  position: relative;
+  z-index: 1;
+}
+.boot-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  contain: strict;
+  pointer-events: none;
+  user-select: none;
+  /* Keep the reading area calm while the circuitry remains visible at the edges. */
+  mask-image: radial-gradient(
+    ellipse 44% 76% at 50% 48%,
+    transparent 20%,
+    #0009 65%,
+    #000 100%
+  );
+}
+.boot-circuit {
+  position: absolute;
+  width: clamp(340px, 36vw, 620px);
+  height: 100%;
+  left: -3%;
+  top: 0;
+  overflow: visible;
+}
+.boot-circuit-right {
+  left: auto;
+  right: -3%;
+  transform: rotate(180deg);
+  opacity: 0.8;
+}
+.boot-circuit-right .boot-board-marks {
+  display: none;
+}
+.boot-traces {
+  stroke: #ffffff24;
+  stroke-width: 1;
+}
+.boot-traces path:nth-child(3n) {
+  stroke: #0044ff65;
+}
+.boot-packets {
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linecap: square;
+}
+.boot-packets path {
+  stroke-dasharray: 18 420;
+  animation: boot-data-flow 6s linear infinite;
+}
+.boot-packets path:nth-child(2n) {
+  animation-duration: 9s;
+  animation-delay: -4s;
+}
+.boot-packets path:nth-child(3n) {
+  animation-delay: -2s;
+  stroke: #b6c9ff;
+}
+.boot-junctions {
+  stroke: #5978cc;
+  stroke-width: 1;
+  fill: var(--ink);
+}
+.boot-node-core {
+  fill: var(--blue);
+  stroke: none;
+}
+.boot-chip {
+  stroke: #6c83bc;
+  stroke-width: 1;
+}
+.boot-chip-core {
+  fill: var(--blue);
+  stroke: var(--blue);
+  animation: boot-core-signal 3s ease-in-out infinite;
+}
+.boot-board-marks {
+  stroke: #ffffff35;
+  stroke-width: 1;
+}
+.boot-board-marks text {
+  fill: #ffffff55;
+  stroke: none;
+  font: 10px var(--mono);
+  letter-spacing: 1px;
+}
+.boot-grid-plane {
+  position: absolute;
+  width: 180%;
+  height: 80%;
+  left: -40%;
+  bottom: -43%;
+  perspective: 500px;
+  mask-image: linear-gradient(transparent, #000 55%);
+}
+.boot-grid-lines {
+  position: absolute;
+  inset: -100% 0;
+  background-image:
+    linear-gradient(#0044ff32 1px, transparent 1px),
+    linear-gradient(90deg, #0044ff32 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform-origin: 50% 55%;
+  transform: rotateX(62deg);
+  animation: boot-grid-drift 8s linear infinite;
+}
+.boot-geometry {
+  --cube-size: clamp(86px, 9vw, 150px);
+  --cube-half: calc(var(--cube-size) / 2);
+  position: absolute;
+  top: 15%;
+  right: 6%;
+  width: clamp(180px, 20vw, 310px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  perspective: 700px;
+}
+.boot-cube {
+  position: relative;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform-style: preserve-3d;
+  animation: boot-cube-turn 22s linear infinite;
+}
+.boot-cube-face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #537dffb3;
+  background: #0044ff05;
+  backface-visibility: visible;
+}
+.boot-cube-face::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid #ffffff25;
+}
+.cube-front {
+  transform: translateZ(var(--cube-half));
+}
+.cube-back {
+  transform: rotateY(180deg) translateZ(var(--cube-half));
+}
+.cube-right {
+  transform: rotateY(90deg) translateZ(var(--cube-half));
+}
+.cube-left {
+  transform: rotateY(-90deg) translateZ(var(--cube-half));
+}
+.cube-top {
+  transform: rotateX(90deg) translateZ(var(--cube-half));
+}
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(var(--cube-half));
+}
+.boot-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed #ffffff28;
+  border-radius: 50%;
+  animation: boot-orbit-turn 60s linear infinite;
+}
+.boot-orbit::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  width: 6px;
+  height: 6px;
+  background: var(--blue);
+}
+.boot-orbit-inner {
+  inset: 8%;
+  border-style: solid;
+  border-color: #0044ff45;
+  animation-direction: reverse;
+}
+.boot-geometry-coordinate {
+  position: absolute;
+  bottom: -24px;
+  font-size: 9px;
+  color: #8e9dc0;
+  letter-spacing: 2px;
+}
+.boot-scan-line {
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  background: #0044ff6b;
+  animation: boot-scan 9s linear infinite;
+}
+.boot-edge-mark {
+  position: absolute;
+  left: 28px;
+  color: #ffffff60;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.boot-edge-top {
+  top: 24px;
+}
+.boot-edge-bottom {
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.boot-status-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--blue);
+  animation: boot-core-signal 3s ease-in-out infinite;
+}
+@keyframes boot-data-flow {
+  to {
+    stroke-dashoffset: -876;
+  }
+}
+@keyframes boot-core-signal {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes boot-grid-drift {
+  to {
+    background-position:
+      0 64px,
+      0 64px;
+  }
+}
+@keyframes boot-cube-turn {
+  from {
+    transform: rotateX(-22deg) rotateY(0) rotateZ(-12deg);
+  }
+  to {
+    transform: rotateX(-22deg) rotateY(360deg) rotateZ(-12deg);
+  }
+}
+@keyframes boot-orbit-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes boot-scan {
+  to {
+    translate: 0 calc(100cqh + 1px);
+  }
+}
+.boot-background {
+  container-type: size;
+}
+@media (max-width: 1000px) {
+  .boot-circuit {
+    left: -10%;
+  }
+  .boot-circuit-right {
+    left: auto;
+    right: -10%;
+  }
+  .boot-geometry {
+    right: -4%;
+  }
+}
+@media (max-width: 767px) {
+  .boot-background {
+    mask-image: radial-gradient(
+      ellipse 63% 48% at 50% 48%,
+      transparent 10%,
+      #0008 75%,
+      #000 100%
+    );
+  }
+  .boot-circuit {
+    left: -180px;
+    opacity: 0.6;
+  }
+  .boot-circuit-right {
+    left: auto;
+    right: -180px;
+    opacity: 0.5;
+  }
+  .boot-geometry {
+    --cube-size: 84px;
+    width: 160px;
+    top: 3%;
+    right: -55px;
+    opacity: 0.7;
+  }
+  .boot-edge-mark {
+    left: 14px;
+    font-size: 8px;
+  }
+  .boot-edge-top {
+    top: 14px;
+  }
+  .boot-edge-bottom {
+    bottom: 14px;
+  }
+  .boot-geometry-coordinate {
+    display: none;
+  }
+}
+@media (max-height: 540px) and (min-width: 600px) {
+  .boot-geometry {
+    top: 8%;
+    right: 2%;
+    width: 160px;
+    --cube-size: 80px;
+  }
+  .boot-edge-mark {
+    display: none;
+  }
+}

@@ -1,0 +1,271 @@
+.commit-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+.commit-stage .commit-content {
+  width: 100%;
+  max-width: none;
+  margin: auto 0;
+  padding: 32px clamp(24px, 3vw, 48px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+.commit-stage .commit-content > * {
+  grid-column: auto;
+  grid-row: auto;
+}
+.commit-stage .commit-content h1 {
+  font-size: clamp(36px, 3.4vw, 56px);
+}
+.commit-stage .commit-content h1 span {
+  color: var(--blue);
+}
+.commit-stage .commit-personal {
+  font-size: 21px;
+}
+.commit-stage .join-button {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  min-height: 56px;
+  font-size: 21px;
+}
+.commit-stage .join-button:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.commit-stage .process-row {
+  border-color: #0a0a0a40;
+}
+.commit-stage .process-row strong {
+  font-size: 15px;
+}
+.commit-stage .commit-content > .inline-link {
+  color: var(--ink);
+}
+.commit-gallery {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-width: 0;
+  min-height: 0;
+  border-left: 1px solid var(--ink);
+  background: #e8ebf1;
+}
+.commit-gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--ink);
+  background: white;
+}
+.commit-gallery-header h2 {
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.28;
+  max-width: 290px;
+}
+.commit-years {
+  display: flex;
+  flex-shrink: 0;
+  border: 1px solid var(--ink);
+}
+.commit-years button {
+  min-height: 40px;
+  padding: 6px 12px;
+  transition:
+    background-color 180ms,
+    color 180ms;
+}
+.commit-years button + button {
+  border-left: 1px solid var(--ink);
+}
+.commit-years button[aria-pressed="true"] {
+  color: white;
+  background: var(--ink);
+}
+.commit-years button:focus-visible {
+  outline-offset: -3px;
+}
+.commit-poster {
+  margin: 0;
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  padding: 0;
+  overflow: clip;
+}
+.commit-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: commit-poster-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.commit-gallery-note {
+  padding: 12px 24px;
+  border-top: 1px solid var(--ink);
+  font-size: 10px;
+}
+@keyframes commit-poster-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (min-width: 768px) and (max-height: 780px) {
+  .commit-stage .commit-content {
+    padding: 20px 24px;
+    gap: 10px;
+  }
+  .commit-stage .commit-content h1 {
+    font-size: 36px;
+  }
+  .commit-stage .commit-personal {
+    font-size: 18px;
+  }
+  .commit-stage .join-button {
+    min-height: 50px;
+    padding: 12px 16px;
+  }
+  .commit-gallery-header {
+    padding: 16px;
+  }
+  .commit-gallery-header h2 {
+    font-size: 22px;
+  }
+}
+@media (min-width: 768px) and (max-height: 700px) {
+  .commit-stage .commit-content > .body-copy {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .commit-stage {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: clamp(148px, 27dvh, 220px) auto;
+  }
+  .commit-gallery {
+    grid-row: 1;
+    grid-template-rows: auto minmax(0, 1fr);
+    border-left: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .commit-gallery-header {
+    padding: 5px 12px;
+    gap: 8px;
+  }
+  .commit-gallery-header h2 {
+    font-size: 14px;
+  }
+  .commit-years {
+    font-size: 10px;
+  }
+  .commit-years button {
+    min-height: 28px;
+    padding: 4px 6px;
+  }
+  .commit-gallery-note {
+    display: none;
+  }
+  .commit-stage .commit-content {
+    grid-row: 2;
+    padding: 12px 20px;
+    gap: 8px;
+  }
+  .commit-stage .commit-content h1 {
+    font-size: 32px;
+  }
+  .commit-stage .commit-personal {
+    font-size: 18px;
+  }
+  .commit-stage .commit-content > .outlined-tag,
+  .commit-stage .process-row {
+    display: none;
+  }
+  .commit-stage .commit-content > .body-copy {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .commit-stage .join-button {
+    min-height: 48px;
+    padding: 10px 14px;
+    font-size: 20px;
+  }
+  .commit-stage .commit-change {
+    min-height: 28px;
+  }
+  .commit-stage .commit-content > .inline-link {
+    padding-block: 4px;
+    font-size: 10px;
+  }
+}
+@media (max-width: 767px) and (max-height: 800px) {
+  .commit-stage .commit-content > .body-copy {
+    display: none;
+  }
+}
+@media (max-width: 767px) and (max-height: 620px) {
+  .commit-stage .commit-content {
+    padding: 8px 16px;
+    gap: 6px;
+  }
+}
+@media (min-width: 600px) and (max-height: 540px) {
+  .commit-stage {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+  .commit-gallery {
+    grid-column: 2;
+    grid-row: 1;
+    border-left: 1px solid var(--ink);
+    border-bottom: 0;
+  }
+  .commit-stage .commit-content {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 6px 18px;
+    gap: 6px;
+  }
+  .commit-stage .commit-content h1 {
+    font-size: 30px;
+  }
+  .commit-stage .commit-content > .outlined-tag,
+  .commit-stage .commit-content > .body-copy,
+  .commit-stage .process-row {
+    display: none;
+  }
+  .commit-stage .join-button {
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 18px;
+  }
+  .commit-gallery-header {
+    padding: 6px 10px;
+    gap: 8px;
+  }
+  .commit-gallery-header h2 {
+    font-size: 14px;
+  }
+  .commit-years {
+    font-size: 10px;
+  }
+  .commit-years button {
+    min-height: 28px;
+    padding: 4px 6px;
+  }
+  .commit-gallery-note {
+    display: none;
+  }
+}

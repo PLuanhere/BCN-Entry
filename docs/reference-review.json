@@ -1,0 +1,282 @@
+[
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 1,
+    "active": "stage-1",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 2,
+    "active": "stage-2",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 3,
+    "active": "stage-3",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 4,
+    "active": "stage-4",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 5,
+    "active": "stage-5",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "stage": 6,
+    "active": "stage-6",
+    "scrollHeight": 740,
+    "height": 740,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": false,
+    "action": "lab-tab",
+    "selected": "> PROJECTS"
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 1,
+    "active": "stage-1",
+    "scrollHeight": 716,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 2,
+    "active": "stage-2",
+    "scrollHeight": 716,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 3,
+    "active": "stage-3",
+    "scrollHeight": 842,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 4,
+    "active": "stage-4",
+    "scrollHeight": 716,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 5,
+    "active": "stage-5",
+    "scrollHeight": 716,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "stage": 6,
+    "active": "stage-6",
+    "scrollHeight": 716,
+    "height": 716,
+    "overflowY": "auto",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gehihi",
+    "mobile": true,
+    "action": "lab-tab",
+    "selected": "> PROJECTS"
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 1,
+    "active": "stage-1",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 2,
+    "active": "stage-2",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 3,
+    "active": "stage-3",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 4,
+    "active": "stage-4",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 5,
+    "active": "stage-5",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": false,
+    "stage": 6,
+    "active": "stage-6",
+    "scrollHeight": 724,
+    "height": 724,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 1,
+    "active": "stage-1",
+    "scrollHeight": 696,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 2,
+    "active": "stage-2",
+    "scrollHeight": 696,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 3,
+    "active": "stage-3",
+    "scrollHeight": 1028,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 4,
+    "active": "stage-4",
+    "scrollHeight": 696,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 5,
+    "active": "stage-5",
+    "scrollHeight": 696,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "file": "gemini",
+    "mobile": true,
+    "stage": 6,
+    "active": "stage-6",
+    "scrollHeight": 696,
+    "height": 696,
+    "overflowY": "visible",
+    "bodyOverflow": 0,
+    "errors": []
+  },
+  {
+    "notion": "https://scientific-light-5a3.notion.site/BrandGuide-Ban-C-ng-Ngh-3ea4aa36118d80249099cd4865443da5",
+    "text": "Skip to content\nBrandGuide Ban Công Nghệ\nI. Brand Core (trục xương sống)\nII. Kế hoạch phát triển:"
+  }
+]

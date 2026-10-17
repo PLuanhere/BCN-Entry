@@ -1,0 +1,151 @@
+/* Reclaim decorative space when the wider Vietnamese letterforms wrap. */
+@media (min-width: 768px) and (min-height: 541px) and (max-height: 780px) {
+  .culture-stage > .stage-heading {
+    padding-block: 14px;
+  }
+  .culture-bottom {
+    padding-block: 4px;
+  }
+}
+@media (min-width: 768px) and (min-height: 701px) and (max-height: 800px) {
+  .visual-canvas {
+    flex: 1 1 0;
+    height: 0;
+    min-height: 180px;
+    padding: 0;
+  }
+  .stack-orbit,
+  .labs-machine {
+    scale: 0.8;
+  }
+  .build-machine,
+  .flow-machine,
+  .growth-machine {
+    scale: 0.8;
+  }
+  .foundation-machine {
+    scale: 0.8;
+  }
+}
+@media (max-width: 359px) and (max-height: 780px) {
+  .identity-white {
+    padding-inline: 12px;
+    gap: 8px;
+  }
+  .identity-content {
+    gap: 8px;
+  }
+  .identity-panel > .content-label {
+    display: none;
+  }
+}
+@media (max-width: 767px) and (min-height: 621px) and (max-height: 720px) {
+  .culture-stage > .stage-heading {
+    padding-block: 10px;
+  }
+  .culture-bottom {
+    padding-block: 4px;
+  }
+  .workspace-scene {
+    grid-template-rows: 85px 1fr;
+  }
+  .workspace-copy {
+    padding-block: 8px;
+    gap: 8px;
+  }
+  .workspace-focus {
+    gap: 8px;
+  }
+  .activities-heading {
+    padding-block: 8px;
+  }
+  .activities-copy {
+    padding-block: 10px;
+  }
+}
+@media (max-width: 767px) and (min-height: 801px) and (max-height: 900px) {
+  .sync-stage {
+    padding: 14px 16px;
+  }
+  .sync-stage .sync-content {
+    gap: 10px;
+  }
+  .sync-heading {
+    gap: 10px;
+  }
+  .sync-stage .quiz-options button {
+    padding-block: 12px;
+  }
+}
+@media (max-width: 767px) and (max-height: 620px) {
+  .sync-stage .quiz-options button {
+    min-height: 54px;
+    padding-block: 7px;
+  }
+  .workspace-copy {
+    padding-block: 6px;
+    gap: 4px;
+  }
+  .workspace-focus {
+    gap: 4px;
+  }
+  .commit-stage .commit-content {
+    gap: 6px;
+  }
+}
+@media (max-width: 359px) and (max-height: 620px) {
+  .identity-white {
+    padding-block: 4px;
+    gap: 6px;
+  }
+  .identity-content {
+    gap: 6px;
+  }
+  .commit-stage .commit-content {
+    padding-block: 6px;
+  }
+  .stage.workspace-stage h1 {
+    font-size: 22px;
+  }
+  .workspace-scene {
+    grid-template-rows: 48px 1fr;
+  }
+  .workspace-copy {
+    padding-inline: 12px;
+  }
+  .workspace-stage .learning-levels button {
+    min-height: 36px;
+    padding-block: 4px;
+  }
+  .workspace-stage .item-selector button {
+    min-height: 36px;
+    padding-block: 6px;
+  }
+  .foundation-machine {
+    scale: 0.2;
+  }
+  .stack-orbit,
+  .labs-machine,
+  .growth-machine {
+    scale: 0.12;
+  }
+  .build-machine,
+  .flow-machine {
+    scale: 0.15;
+  }
+}
+@media (min-width: 600px) and (max-height: 540px) {
+  .culture-stage > .stage-heading {
+    padding-block: 4px;
+  }
+  .workspace-scene {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  }
+  .workspace-copy {
+    padding-block: 2px;
+    gap: 2px;
+  }
+  .commit-stage .commit-content {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,272 @@
+.culture-column {
+  isolation: isolate;
+  background: #10151b;
+  color: white;
+  border-color: rgb(255 255 255 / 28%);
+}
+.culture-column.is-open {
+  background: #10151b;
+}
+.culture-scene,
+.culture-photo,
+.culture-photo-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.culture-scene {
+  z-index: -1;
+  overflow: hidden;
+}
+.culture-photo {
+  transform: scale(1.02);
+  transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.culture-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.65);
+  animation: culture-photo-drift 18s ease-in-out infinite alternate;
+}
+.culture-column:nth-child(2) .culture-photo img {
+  animation-delay: -6s;
+}
+.culture-column:nth-child(3) .culture-photo img {
+  animation-delay: -12s;
+}
+.culture-photo-shade {
+  background: linear-gradient(
+    180deg,
+    rgb(6 13 24 / 34%),
+    rgb(6 13 24 / 55%) 38%,
+    rgb(6 13 24 / 88%)
+  );
+}
+.culture-photo-shade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(6 13 24 / 86%) 0%,
+    rgb(6 13 24 / 69%) 48%,
+    rgb(6 13 24 / 15%) 100%
+  );
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.culture-column.is-open .culture-photo {
+  transform: scale(1.08);
+}
+.culture-column.is-open .culture-photo-shade::after {
+  opacity: 1;
+}
+.culture-grid[data-open="true"]
+  .culture-column:not(.is-open)
+  .culture-photo-shade::after {
+  opacity: 0.65;
+}
+@media (hover: hover) {
+  .culture-column:not(.is-open):hover .culture-photo {
+    transform: scale(1.06);
+  }
+}
+.culture-column .culture-toggle:hover,
+.culture-column .pillar-number,
+.culture-column .culture-command {
+  color: white;
+}
+.culture-column .pillar-number {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.culture-column .pillar-number::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  background: white;
+  transition:
+    background 300ms,
+    box-shadow 300ms;
+}
+.culture-column.is-open .pillar-number::before {
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgb(255 255 255 / 15%);
+}
+.culture-toggle:focus-visible {
+  outline-color: white;
+}
+.culture-column .culture-toggle-arrow {
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.culture-column.is-open .culture-toggle-arrow {
+  transform: rotate(180deg);
+}
+.culture-column .body-copy {
+  color: #f5f6f9;
+}
+.culture-column .inline-link {
+  color: white;
+  border-color: rgb(255 255 255 / 55%);
+}
+.culture-column .inline-link:hover {
+  border-color: white;
+}
+.culture-column .principle-selector button {
+  border-color: rgb(255 255 255 / 55%);
+  background: rgb(6 13 24 / 35%);
+  transition:
+    background 180ms,
+    color 180ms;
+}
+.culture-column .principle-selector button[aria-pressed="true"] {
+  background: white;
+  color: var(--ink);
+}
+.culture-column.is-open .culture-panel > * {
+  animation: culture-foreground-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.culture-column.is-open .culture-panel > :nth-child(1) {
+  animation-delay: 150ms;
+}
+.culture-column.is-open .culture-panel > :nth-child(2) {
+  animation-delay: 230ms;
+}
+.culture-column.is-open .culture-panel > :nth-child(3) {
+  animation-delay: 310ms;
+}
+.culture-trace {
+  position: absolute;
+  width: clamp(160px, 28vw, 370px);
+  height: auto;
+  right: 3%;
+  bottom: 4%;
+  stroke: rgb(255 255 255 / 28%);
+  stroke-width: 1;
+  opacity: 0;
+  transform: translateY(20px) rotate(-6deg);
+  transition:
+    opacity 700ms 150ms,
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.culture-trace path {
+  stroke-dasharray: 36 12;
+}
+.culture-column.is-open .culture-trace {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+.culture-column.is-open .culture-trace path {
+  animation: culture-trace-flow 8s linear infinite;
+}
+.culture-column.is-open .culture-trace circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: culture-node-pulse 3s ease-in-out infinite;
+}
+.culture-scene-frame {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  clip-path: polygon(
+    0 0,
+    32px 0,
+    32px 1px,
+    1px 1px,
+    1px 32px,
+    0 32px,
+    0 0,
+    100% 100%,
+    calc(100% - 32px) 100%,
+    calc(100% - 32px) calc(100% - 1px),
+    calc(100% - 1px) calc(100% - 1px),
+    calc(100% - 1px) calc(100% - 32px),
+    100% calc(100% - 32px),
+    100% 100%
+  );
+  opacity: 0;
+  transition: opacity 500ms;
+}
+.culture-column.is-open .culture-scene-frame {
+  opacity: 1;
+}
+.culture-scene-signal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--blue);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.culture-column.is-open .culture-scene-signal {
+  animation: culture-signal-enter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes culture-photo-drift {
+  from {
+    transform: scale(1.02) translateX(-0.5%);
+  }
+  to {
+    transform: scale(1.1) translateX(0.5%);
+  }
+}
+@keyframes culture-foreground-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes culture-trace-flow {
+  to {
+    stroke-dashoffset: -192;
+  }
+}
+@keyframes culture-node-pulse {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+@keyframes culture-signal-enter {
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 767px) {
+  .culture-photo-shade::after {
+    background: rgb(6 13 24 / 65%);
+  }
+  .culture-trace {
+    right: -35px;
+    bottom: -15px;
+    stroke: rgb(255 255 255 / 14%);
+  }
+  .culture-scene-frame {
+    inset: 8px;
+  }
+  .culture-grid[data-open="true"]
+    .culture-column:not(.is-open)
+    .pillar-number::before {
+    display: none;
+  }
+}
+@media (max-height: 540px) and (min-width: 600px) {
+  .culture-trace {
+    width: 170px;
+    right: 12px;
+    bottom: -20px;
+    opacity: 0.5;
+  }
+  .culture-column.is-open .culture-trace {
+    opacity: 0.5;
+  }
+}
