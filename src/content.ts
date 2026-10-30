@@ -1,11 +1,9 @@
 export const stages = [
-  { id: "boot", label: "Khởi động", code: "BOOT.EXE" },
-  { id: "identity", label: "BCN là ai?", code: "CORE_IDENTITY" },
-  { id: "culture", label: "Văn hóa", code: "CULTURE.LOG" },
-  { id: "workspace", label: "Học & làm", code: "WORKSPACE.DIR" },
-  { id: "activities", label: "Ngoài code", code: "LIFE.OUTSIDE_CODE" },
-  { id: "sync", label: "Điểm chung", code: "MINDSET_SYNC" },
-  { id: "commit", label: "Gõ cửa BCN", code: "COMMITMENT" },
+  { id: "identity", label: "Tổng quan", code: "CORE_IDENTITY" },
+  { id: "workspace", label: "Hướng học", code: "WORKSPACE.DIR" },
+  { id: "activities", label: "Hoạt động", code: "LIFE.OUTSIDE_CODE" },
+  { id: "culture", label: "Tinh thần", code: "CULTURE.LOG" },
+  { id: "commit", label: "Tham gia", code: "COMMITMENT" },
 ];
 export const stageIndex = (id: string) =>
   stages.findIndex((stage) => stage.id === id);
@@ -29,15 +27,15 @@ export const identityViews = [
     label: "Chúng mình",
     tag: "PURPOSE / POSITIONING",
     title: "MÁI NHÀ CHUNG\nCỦA SINH VIÊN\nYÊU CÔNG NGHỆ.",
-    text: "Ban Công Nghệ tiếp nối truyền thống cựu sinh viên hỗ trợ sinh viên. Một cộng đồng thực hành để cùng học, xây dựng sản phẩm và trưởng thành qua dự án thực tế.",
-    note: "Tạo cơ hội cho sinh viên có ý chí vươn lên. Có người đồng hành, có nơi để thuộc về.",
+    text: "Ban Công Nghệ (BCN) thuộc Đoàn khoa Công nghệ Thông tin, Trường Đại học Công nghiệp TP.HCM (IUH). Cùng học, thực hành và kết nối với những người bạn cùng chí hướng.",
+    note: "Dành cho sinh viên khoa CNTT, IUH · Không thu phí.",
   },
   {
     label: "Sứ mệnh",
     tag: "TRAINING / MENTORSHIP / COMMUNITY",
     title: "HỌC ĐƯỢC.\nLÀM ĐƯỢC.\nCHIA SẺ LẠI.",
-    text: "Huấn luyện từ nền tảng, kết nối mentor và cộng đồng, rèn năng lực bằng dự án. Product Labs là định hướng phát triển các nhóm chuyên môn để tạo sản phẩm có người dùng.",
-    note: "5 sứ mệnh: Training · Mentorship · Community · Product Labs · Projects.",
+    text: "Tạo môi trường cùng học, thực hành và chia sẻ kinh nghiệm. Các hướng học gồm Cơ Bản (C, Java, OOP), Frontend, Backend, Non-dev, Fullstack và Mobile.",
+    note: "Tìm hiểu từng hướng trong phần Học & làm.",
   },
   {
     label: "Tầm nhìn",
@@ -50,13 +48,13 @@ export const identityViews = [
 
 export const culturePillars = [
   {
-    title: "Thái độ &\nChủ động",
+    title: "Chủ động &\nHọc hỏi",
     photo: "BCN_Train05.jpg",
     photoPosition: "56% 64%",
     mobileText:
-      "Chủ động tìm hiểu, thử giải quyết vấn đề và hỏi khi cần. Tinh thần học hỏi quan trọng hơn xuất phát điểm.",
-    text: "Xuất phát điểm không quan trọng bằng tinh thần học hỏi. Thấy vấn đề thì thử tìm cách giải quyết. Chưa biết thì tìm cách học và chủ động hỏi.",
-    command: "ASK → TRY → LEARN",
+      "Tự tìm hiểu, thử làm và hỏi khi cần. Thái độ học hỏi quan trọng hơn xuất phát điểm.",
+    text: "Tự tìm hiểu, thử làm và hỏi khi cần. Thái độ học hỏi quan trọng hơn xuất phát điểm.",
+    command: "HỎI → THỬ → HỌC",
     details: [
       "Không giấu điều chưa biết, không ngại yêu cầu hướng dẫn.",
       "Hiểu mục tiêu trước khi làm, chủ động đề xuất cách tốt hơn.",
@@ -64,13 +62,13 @@ export const culturePillars = [
     ],
   },
   {
-    title: "Thực chiến &\nTư duy",
+    title: "Trách nhiệm &\nCam kết",
     photo: "BCN_Train04.jpg",
     photoPosition: "55% 50%",
     mobileText:
-      "Học qua việc thật: thử, sai, sửa. Hiểu vấn đề từ người dùng, sản phẩm và đội nhóm.",
-    text: "Kiến thức cần được áp dụng vào việc thật. Được thử, được sai và tự tìm cách vượt qua. Nhìn vấn đề từ người dùng, sản phẩm, đội nhóm và mục tiêu chung.",
-    command: "BUILD → REVIEW → IMPROVE",
+      "Nhận việc vừa sức, theo đến cùng. Gặp khó hoặc trễ hẹn thì báo sớm.",
+    text: "Nhận việc vừa sức, theo đến cùng. Gặp khó hoặc trễ hẹn thì báo sớm.",
+    command: "NHẬN VIỆC → GIỮ CAM KẾT",
     details: [
       "Làm xong phải kiểm tra và giải thích được mình đã làm gì, vì sao.",
       "Không làm hộ, không gian lận, không phụ thuộc AI để đối phó.",
@@ -78,13 +76,13 @@ export const culturePillars = [
     ],
   },
   {
-    title: "Cộng hưởng &\nTrách nhiệm",
+    title: "Chia sẻ &\nCùng tiến bộ",
     photo: "BCN_Train07.jpg",
     photoPosition: "66% 60%",
     mobileText:
-      "Cùng học, chia sẻ và giữ cam kết. Mỗi người tiến bộ cũng giúp đồng đội đi xa hơn.",
-    text: "Một người giỏi tạo ra năng lực. Một tập thể tốt tạo ra sức mạnh. Phát triển cá nhân đi cùng trách nhiệm kéo những người xung quanh cùng tiến bộ.",
-    command: "SHARE → SUPPORT → GROW",
+      "Lắng nghe, tôn trọng và chia sẻ điều mình biết. Cùng giúp đồng đội tiến bộ.",
+    text: "Lắng nghe, tôn trọng và chia sẻ điều mình biết. Cùng giúp đồng đội tiến bộ.",
+    command: "CHIA SẺ → CÙNG TIẾN BỘ",
     details: [
       "Người đi trước hỗ trợ người đi sau, không làm thay.",
       "Nhận việc thì theo đến cùng; khó khăn phải báo sớm, không ghost.",
@@ -96,7 +94,7 @@ export const culturePillars = [
 export const expectations = [
   {
     title: "Chủ động với việc học",
-    body: "Tự tìm hiểu, hỏi khi chưa hiểu, có mục tiêu cụ thể mỗi học kỳ. Kế hoạch phát triển đặt ra nhịp tự học tối thiểu hai giờ mỗi ngày.",
+    body: "Chủ động tìm hiểu và hỏi khi chưa hiểu. BCN khuyến nghị tự học khoảng hai giờ mỗi ngày; đây là gợi ý, không phải điều kiện bắt buộc.",
   },
   {
     title: "Có trách nhiệm với cam kết",
@@ -117,33 +115,33 @@ export const expectations = [
 ];
 
 export const folders = [
-  { id: "learning", label: "Learning", sub: "Lộ trình học tập" },
-  { id: "projects", label: "Projects", sub: "Thực chiến dự án" },
+  { id: "learning", label: "Học tập", sub: "Các hướng học đang triển khai" },
+  { id: "projects", label: "Dự án", sub: "Thực chiến dự án" },
   { id: "labs", label: "Product Labs", sub: "Nhóm chuyên môn" },
-  { id: "workflow", label: "Một ngày / một project", sub: "Cách cùng làm" },
-  { id: "path", label: "Người BCN đi tiếp đâu?", sub: "Hướng trưởng thành" },
+  { id: "workflow", label: "Cách làm", sub: "Cách cùng làm" },
+  { id: "path", label: "Phát triển", sub: "Hướng trưởng thành" },
 ];
 
 export const learningTracks = [
   {
-    name: "Fullstack Website",
+    name: "Frontend Web & Mobile",
     detail:
-      "Từ Frontend Web Basic, phát triển năng lực xây dựng website hoàn chỉnh với React và Next.js.",
+      "Web cơ bản → nâng cao và Mobile cơ bản → nâng cao. Các hướng Frontend đều đang triển khai.",
   },
   {
-    name: "Fullstack Mobile",
+    name: "Backend",
     detail:
-      "Phát triển ứng dụng với React Native, hoặc xây dựng ứng dụng Android bằng Java / Kotlin từ nền tảng OOP Java.",
+      "Hướng phát triển phía máy chủ, đang được triển khai tại BCN.",
   },
   {
-    name: "NoCode",
+    name: "Non-dev",
     detail:
-      "Product Design, Business Analyst, UX/UI, Graphic Design, truyền thông và các vai trò đóng góp cho sản phẩm.",
+      "Design, Business Analyst, UX/UI và các vai trò ngoài lập trình. Đây là hướng học đang triển khai, khác với hoạt động ngoại khóa NoCode.",
   },
   {
-    name: "Lộ trình tự chọn",
+    name: "Fullstack",
     detail:
-      "Chọn hướng học riêng, vẫn review sản phẩm và năng lực định kỳ, cùng tham gia dự án chung.",
+      "Kết hợp Frontend và Backend để phát triển sản phẩm hoàn chỉnh. Hướng học đang triển khai tại BCN.",
   },
 ];
 
@@ -162,11 +160,6 @@ export const projectKinds = [
     name: "Dự án nhóm từ năm 2",
     detail:
       "Sau lộ trình cơ bản, xây MVP, tìm người dùng và cải tiến qua feedback. Kế hoạch đặt mục tiêu tối thiểu 50 người dùng trong một năm, không phải thành tích đã đạt.",
-  },
-  {
-    name: "Dự án NoCode",
-    detail:
-      "Hoạt động gắn kết dành cho mọi thành viên, thử trải nghiệm mới ngoài lập trình, tương tự một hình thức team building.",
   },
 ];
 
@@ -197,7 +190,7 @@ export const growthPaths = [
   {
     code: "01 / FOUNDATION",
     title: "Người đang học",
-    text: "Xây nền tảng Product Basic, Frontend Web Basic và OOP Java. Tập thói quen tự học, cộng tác và giữ cam kết.",
+    text: "Xây nền tảng C, Java, OOP, Web và Mobile. Tập thói quen tự học, cộng tác và giữ cam kết.",
   },
   {
     code: "02 / PRACTICE",

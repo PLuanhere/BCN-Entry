@@ -1,5 +1,7 @@
 import type { BcnDocument, DocumentSection } from "../documents";
+import { useState } from "react";
 import { photoUrl } from "../photoAlbums";
+import ContentIcon from "./ContentIcon";
 
 export function DocumentSections({
   sections,
@@ -14,7 +16,7 @@ export function DocumentSections({
           key={section.title}
         >
           <span className="doc-section-number mono" aria-hidden="true">
-            {String(index + 1).padStart(2, "0")}
+            <ContentIcon name={/thời gian|lịch/i.test(section.title) ? "calendar" : index === 0 ? "layers" : "people"} />
           </span>
           <div>
             <h3>{section.title}</h3>
@@ -39,8 +41,12 @@ export default function DocumentContent({
   document: BcnDocument;
   titleId?: string;
 }) {
+  const [page, setPage] = useState(0);
+  const pageSize = document.sections.length > 2 ? 1 : 2;
+  const pageCount = Math.ceil(document.sections.length / pageSize);
   return (
     <div className="document-content">
+      <header className="document-heading">
       <span className="content-label mono">{document.code}</span>
       <h2 id={titleId} tabIndex={-1}>
         {document.title}
@@ -59,7 +65,9 @@ export default function DocumentContent({
           </figure>
         )}
       </div>
-      <DocumentSections sections={document.sections} />
+      </header>
+      <DocumentSections sections={document.sections.slice(page * pageSize, (page + 1) * pageSize)} />
+      {pageCount > 1 && <div className="document-pagination"><button className="text-action" disabled={page === 0} onClick={() => setPage((value) => value - 1)}>← Phần trước</button><span>{page + 1} / {pageCount}</span><button className="text-action" disabled={page === pageCount - 1} onClick={() => setPage((value) => value + 1)}>Phần tiếp →</button></div>}
       {document.note && <p className="doc-note">{document.note}</p>}
     </div>
   );

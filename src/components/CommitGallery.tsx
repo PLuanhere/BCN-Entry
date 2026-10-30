@@ -34,7 +34,7 @@ export default function CommitGallery() {
         />
       </figure>
       <p className="commit-gallery-note mono">
-        ẤN PHẨM TUYỂN CTV / 2025 — 2026
+        TƯ LIỆU CÁC ĐỢT TUYỂN / 2025 — 2026
       </p>
     </section>
   );

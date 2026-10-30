@@ -3,6 +3,34 @@
   max-width: 68ch;
   color: #525866;
 }
+.identity-content.identity-summary { grid-template-rows: repeat(4, auto); }
+.identity-summary .identity-panel { grid-row: 1 / span 4; }
+.identity-facts { color: var(--blue); font-size: 12px; line-height: 1.7; }
+.activity-copy-stack.activity-summary { grid-template-rows: repeat(3, auto); }
+.activity-summary .activity-copy-panel { grid-row: 1 / span 3; }
+.workspace-focus .study-track-title { white-space: pre-line; font-size: clamp(24px, 2vw, 28px); line-height: 1.3; }
+@media (max-width: 599px) {
+  .identity-facts { font-size: 11px; }
+  .workspace-focus .study-track-title { font-size: 23px; }
+}
+.quick-questions { margin-top: 24px; }
+.quick-questions details { border-top: 1px solid #0a0a0a40; padding: 0 0 8px; }
+.quick-questions details:last-child { border-bottom: 1px solid #0a0a0a40; }
+.quick-questions summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 54px; padding: 16px 0; list-style: none; font-size: 17px; font-weight: 600; line-height: 1.5; cursor: pointer; }
+.quick-questions summary::-webkit-details-marker { display: none; }
+.quick-questions summary > span { color: var(--blue); font-size: 24px; font-weight: 400; }
+.quick-questions details[open] summary { color: var(--blue); }
+.quick-questions details[open] summary > span { rotate: 45deg; }
+.quick-questions details > p { color: #525866; font-size: 16px; line-height: 1.75; }
+.quick-questions .inline-link { margin: 10px 0 8px; }
+.registration-facts { margin: 24px 0; border-top: 1px solid #0a0a0a40; }
+.registration-facts p { display: grid; grid-template-columns: 100px minmax(0,1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid #0a0a0a40; font-size: 15px; line-height: 1.65; }
+.registration-facts p > span { color: #525866; }
+@media (max-width: 599px) {
+  .quick-questions summary { font-size: 15px; }
+  .quick-questions details > p, .registration-facts p { font-size: 14px; }
+  .registration-facts p { grid-template-columns: 80px minmax(0,1fr); gap: 12px; }
+}
 .doc-identity-intro {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 280px);

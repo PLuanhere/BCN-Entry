@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import type { RefObject } from "react";
+import { motionEase, shouldReduceMotion } from "./motion";
+import { releaseDialogHistory, trackDialogHistory } from "./dialogHistory";
+import type { DialogEntry } from "./dialogHistory";
 
 type Motion = {
   phase: "opening" | "closing";
@@ -23,11 +26,12 @@ function cancelMotion(dialog: HTMLDialogElement) {
 function animateDialog(dialog: HTMLDialogElement, phase: Motion["phase"]) {
   const interrupted = motions.has(dialog);
   const style = getComputedStyle(dialog);
+  const reduced = shouldReduceMotion();
   const from = {
     opacity: phase === "opening" && !interrupted ? "0" : style.opacity,
-    transform:
+    transform: reduced ? "none" :
       phase === "opening" && !interrupted
-        ? "translateY(18px) scale(0.985)"
+        ? "translateY(12px) scale(0.99)"
         : style.transform,
   };
   cancelMotion(dialog);
@@ -47,11 +51,12 @@ function animateDialog(dialog: HTMLDialogElement, phase: Motion["phase"]) {
       if (phase === "closing") dialog.close();
       else dialog.dataset.motion = "open";
       motion.animation?.cancel();
-      done(true);
+      if (phase === "closing") void releaseDialogHistory(dialog).then(() => done(true));
+      else done(true);
     },
   };
   motions.set(dialog, motion);
-  const duration = phase === "opening" ? 360 : 220;
+  const duration = reduced ? 160 : phase === "opening" ? 240 : 160;
   if (
     typeof dialog.animate !== "function" ||
     document.visibilityState === "hidden"
@@ -65,13 +70,13 @@ function animateDialog(dialog: HTMLDialogElement, phase: Motion["phase"]) {
         from,
         phase === "opening"
           ? { opacity: "1", transform: "none" }
-          : { opacity: "0", transform: "translateY(10px) scale(0.99)" },
+          : { opacity: "0", transform: reduced ? "none" : "translateY(6px) scale(0.995)" },
       ],
       {
         duration,
         easing:
           phase === "opening"
-            ? "cubic-bezier(0.22, 1, 0.36, 1)"
+            ? motionEase
             : "cubic-bezier(0.4, 0, 1, 1)",
         fill: "both",
       },
@@ -84,10 +89,15 @@ function animateDialog(dialog: HTMLDialogElement, phase: Motion["phase"]) {
   return promise;
 }
 
-export function openDialog(dialog: HTMLDialogElement | null) {
+export function openDialog(dialog: HTMLDialogElement | null, entry?: DialogEntry, restore = false) {
   if (!dialog) return;
   if (dialog.open && motions.get(dialog)?.phase !== "closing") return;
+  if (entry) trackDialogHistory(dialog, entry, restore);
   if (!dialog.open) dialog.showModal();
+  const focusTarget = entry?.type === "content"
+    ? entry.view === "index" ? entry.focusSearch ? "#question-search" : ".question-answer" : "#dialog-title"
+    : "[data-dialog-autofocus]";
+  dialog.querySelector<HTMLElement>(focusTarget)?.focus({ preventScroll: true });
   void animateDialog(dialog, "opening");
 }
 
@@ -116,6 +126,10 @@ export function useDialogMotion(ref: RefObject<HTMLDialogElement | null>) {
     const visibility = () => {
       if (document.visibilityState === "hidden") motions.get(dialog)?.finish();
     };
+    const settle = () => motions.get(dialog)?.finish();
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    preference.addEventListener("change", settle);
+    window.addEventListener("resize", settle);
     dialog.addEventListener("cancel", cancel);
     dialog.addEventListener("close", closed);
     document.addEventListener("visibilitychange", visibility);
@@ -123,6 +137,8 @@ export function useDialogMotion(ref: RefObject<HTMLDialogElement | null>) {
       dialog.removeEventListener("cancel", cancel);
       dialog.removeEventListener("close", closed);
       document.removeEventListener("visibilitychange", visibility);
+      preference.removeEventListener("change", settle);
+      window.removeEventListener("resize", settle);
       cancelMotion(dialog);
     };
   }, [ref]);

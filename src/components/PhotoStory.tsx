@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { reveal } from "../motion";
+import { useContentMotion } from "../useContentMotion";
+import type { CSSProperties } from "react";
 import { photoAlbums, photoUrl } from "../photoAlbums";
 import type { PhotoAlbumId } from "../photoAlbums";
 import { useSwipeGesture } from "../useSwipeGesture";
+import ContentIcon from "./ContentIcon";
 
 export default function PhotoStory({
   albumId,
@@ -16,21 +20,41 @@ export default function PhotoStory({
 }) {
   const album = photoAlbums[albumId];
   const [index, setIndex] = useState(initialIndex);
+  const [failed, setFailed] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
   const photo = album.photos[index];
+  const figureRef = useRef<HTMLElement>(null);
+  const photoMotion = useRef<Animation | null>(null);
+  useContentMotion(figureRef, index, ".photo-caption-copy");
+  useEffect(() => () => { photoMotion.current?.cancel(); }, [photo.file, retry]);
+  useEffect(() => {
+    const stop = () => photoMotion.current?.cancel();
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    preference.addEventListener("change", stop);
+    document.addEventListener("visibilitychange", stop);
+    return () => {
+      stop();
+      preference.removeEventListener("change", stop);
+      document.removeEventListener("visibilitychange", stop);
+    };
+  }, []);
   const move = (offset: number) =>
     setIndex(
       (current) =>
         (current + offset + album.photos.length) % album.photos.length,
     );
   const swipe = useSwipeGesture(move, {
-    ignore: "button:not(.photo-expand),a",
+    ignore: "button:not(.photo-expand),a,select",
   });
   return (
     <figure
+      ref={figureRef}
       className={`photo-story ${full ? "photo-story-full" : "photo-story-preview"}`}
       aria-label={album.code}
+      style={full ? { "--photo-count": album.photos.length } as CSSProperties : undefined}
       {...swipe}
       onKeyDown={(event) => {
+        if ((event.target as HTMLElement).closest("select")) return;
         if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
           event.preventDefault();
           event.stopPropagation();
@@ -40,16 +64,20 @@ export default function PhotoStory({
     >
       <div className="photo-frame">
         <img
-          key={photo.file}
+          key={`${photo.file}-${retry}`}
           src={photoUrl(photo.file)}
           alt={photo.alt}
           width="2048"
           height="1536"
-          loading="lazy"
+          loading={full ? "eager" : "lazy"}
+          hidden={failed === photo.file}
+          onError={() => setFailed(photo.file)}
+          onLoad={(event) => { setFailed(null); photoMotion.current?.cancel(); photoMotion.current = reveal(event.currentTarget, { y: 0, duration: 220 }); }}
           decoding="async"
           draggable="false"
           style={{ objectPosition: photo.position || "50% 50%" }}
         />
+        {failed === photo.file && <div className="photo-error" role="status"><ContentIcon name="photo" /><span>Ảnh chưa tải được.</span><button className="text-action" onClick={() => { setFailed(null); setRetry((value) => value + 1); }}>Tải lại ảnh ↻</button></div>}
         {onExpand && (
           <button
             className="photo-expand"
@@ -83,6 +111,7 @@ export default function PhotoStory({
         </div>
       </figcaption>
       {full && (
+        <>
         <div className="photo-thumbnails" role="group" aria-label="Chọn ảnh">
           {album.photos.map((item, photoIndex) => (
             <button
@@ -94,7 +123,7 @@ export default function PhotoStory({
               <img
                 src={photoUrl(item.file)}
                 alt=""
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 width="96"
                 height="64"
@@ -105,6 +134,8 @@ export default function PhotoStory({
             </button>
           ))}
         </div>
+        <label className="photo-picker"><span className="sr-only">Chọn ảnh trong album</span><select value={index} onChange={(event) => setIndex(Number(event.target.value))}>{album.photos.map((item, photoIndex) => <option key={item.file} value={photoIndex}>{photoIndex + 1} / {album.photos.length} · {item.caption}</option>)}</select></label>
+        </>
       )}
     </figure>
   );

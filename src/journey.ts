@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { stages } from "./content";
+import { studyTracks } from "./bcnInfo";
 import { useStageTransition } from "./useStageTransition";
 
 export type Choices = {
@@ -23,7 +24,7 @@ function restore(): Choices {
     return saved && typeof saved === "object"
       ? {
           identity: valid(saved.identity, 3) ? saved.identity : 0,
-          folder: valid(saved.folder, 5) ? saved.folder : 0,
+          folder: valid(saved.folder, studyTracks.length) ? saved.folder : 0,
           profile: valid(saved.profile, 3) ? saved.profile : null,
           activity: valid(saved.activity, 3) ? saved.activity : 0,
         }
@@ -32,27 +33,50 @@ function restore(): Choices {
     return defaults;
   }
 }
-const route = () =>
-  Math.max(
-    0,
-    stages.findIndex((item) => item.id === location.hash.replace(/^#\/?/, "")),
-  );
+const route = () => {
+  const aliases: Record<string, string> = { boot: "identity", sync: "culture", about: "identity", learning: "workspace", life: "activities", fit: "culture", join: "commit" };
+  const requested = location.hash.replace(/^#\/?/, "");
+  return Math.max(0, stages.findIndex((item) => item.id === (aliases[requested] ?? requested)));
+};
 
-export function useJourney() {
-  const [stage, setStage] = useState(route);
+const progressKey = "bcn-journey-progress-v1";
+function startJourney() {
+  let furthest = -1;
+  try {
+    const saved = localStorage.getItem(progressKey);
+    const value = saved === null ? -1 : Number(saved);
+    if (Number.isInteger(value) && value >= 0 && value < stages.length) furthest = value;
+  } catch { /* Navigation still works when browser storage is unavailable. */ }
+  const stage = Math.min(route(), furthest + 1);
+  return { stage, furthest: Math.max(furthest, stage) };
+}
+
+export function useJourney(entranceBlocked = false) {
+  const [{ stage, furthest }, setJourney] = useState(startJourney);
   const [choices, setChoices] = useState(restore);
   const mainRef = useRef<HTMLElement>(null);
-  const { run, transitioning, settle } = useStageTransition(mainRef);
+  const { run, transitioning, settle } = useStageTransition(mainRef, entranceBlocked);
   const current = useRef(stage);
+  const reached = useRef(furthest);
   const navigated = useRef(false);
-  function go(next: number, push = true) {
-    if (next < 0 || next >= stages.length || next === current.current) return;
+  function go(requested: number, push = true) {
+    if (!Number.isInteger(requested) || requested < 0 || requested >= stages.length) return;
+    // Revisit any opened section, but introduce unseen sections one at a time.
+    // Apply this to links, keyboard, history and direct URL changes alike.
+    const next = Math.min(requested, reached.current + 1);
+    const canonical = `#/${stages[next].id}`;
+    if (next === current.current) {
+      if (location.hash !== canonical) history.replaceState(null, "", canonical);
+      return;
+    }
     const direction = next > current.current ? "forward" : "backward";
     current.current = next;
-    if (push) history.pushState(null, "", `#/${stages[next].id}`);
+    reached.current = Math.max(reached.current, next);
+    if (push) history.pushState(null, "", canonical);
+    else if (location.hash !== canonical) history.replaceState(null, "", canonical);
     run(() => {
       navigated.current = true;
-      setStage(next);
+      setJourney({ stage: next, furthest: reached.current });
     }, direction);
   }
   function move(delta: number) {
@@ -62,6 +86,8 @@ export function useJourney() {
     setChoices((previous) => ({ ...previous, [field]: value }));
   }
   useEffect(() => {
+    const canonical = `#/${stages[current.current].id}`;
+    history.replaceState(location.hash === canonical ? history.state : null, "", canonical);
     try {
       sessionStorage.setItem(key, JSON.stringify(choices));
     } catch {
@@ -69,7 +95,12 @@ export function useJourney() {
     }
   }, [choices]);
   useEffect(() => {
-    const sync = () => go(route(), false);
+    try { localStorage.setItem(progressKey, String(furthest)); } catch { /* Optional progress memory. */ }
+  }, [furthest]);
+  useEffect(() => {
+    const sync = () => {
+      go(route(), false);
+    };
     addEventListener("hashchange", sync);
     addEventListener("popstate", sync);
     const keyboard = (event: KeyboardEvent) => {
@@ -77,6 +108,8 @@ export function useJourney() {
         event.altKey ||
         event.ctrlKey ||
         event.metaKey ||
+        event.repeat ||
+        document.getElementById("entry-loader") ||
         document.querySelector("dialog[open]")
       )
         return;
@@ -103,12 +136,12 @@ export function useJourney() {
     };
   }, []);
   useLayoutEffect(() => {
-    document.title = `${stages[stage].label} / BCN.OS`;
+    document.title = `${stages[stage].label} / Ban Công Nghệ`;
     if (navigated.current) {
       mainRef.current?.scrollTo({ top: 0, behavior: "instant" });
       mainRef.current?.focus({ preventScroll: true });
       navigated.current = false;
     }
   }, [stage]);
-  return { stage, choices, choose, go, move, mainRef, transitioning, settle };
+  return { stage, furthest, maxStage: Math.min(furthest + 1, stages.length - 1), choices, choose, go, move, mainRef, transitioning, settle };
 }

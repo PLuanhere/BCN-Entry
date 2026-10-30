@@ -12,7 +12,7 @@ export type WorkspaceItem = {
 export const workspaceSections = [
   {
     title: "HỌC ĐỂ LÀM.",
-    lead: "Xây nền tảng. Chọn một hướng. Mang kiến thức vào dự án.",
+    lead: "Cơ Bản (C, Java, OOP), Frontend, Backend, Non-dev, Fullstack và Mobile.",
     code: "LEARNING.PATH",
     shape: "learn",
   },
@@ -55,13 +55,13 @@ export const foundationItems: WorkspaceItem[] = [
     photoAlbum: "training",
   },
   {
-    name: "Product Basic",
-    label: "Product",
-    title: "HIỂU SẢN PHẨM\nTRƯỚC KHI LÀM.",
-    summary: "Bắt đầu từ tư duy sản phẩm và nhu cầu người dùng.",
+    name: "Cơ Bản",
+    label: "Cơ Bản",
+    title: "XÂY NỀN TẢNG\nTƯ DUY LẬP TRÌNH.",
+    summary: "Bắt đầu với C, Java và lập trình hướng đối tượng (OOP).",
     detail:
-      "Bắt đầu từ tư duy sản phẩm và nhu cầu người dùng. Học đi cùng thực hành, cộng tác và áp dụng vào dự án chung.",
-    tech: ["figma"],
+      "Làm quen với C và Java, học cách tổ chức chương trình bằng đối tượng (OOP).",
+    tech: ["c", "java", "oop"],
   },
   {
     name: "Frontend Web Basic",
@@ -73,40 +73,40 @@ export const foundationItems: WorkspaceItem[] = [
     tech: ["html5", "css", "javascript"],
   },
   {
-    name: "OOP Java",
-    label: "OOP Java",
-    title: "XÂY NỀN TẢNG\nTƯ DUY LẬP TRÌNH.",
-    summary: "Học lập trình hướng đối tượng với Java, rồi chọn hướng đi tiếp.",
+    name: "Mobile cơ bản",
+    label: "Mobile",
+    title: "BẮT ĐẦU\nVỚI ỨNG DỤNG DI ĐỘNG.",
+    summary: "Học Mobile từ cơ bản, rồi phát triển lên nâng cao.",
     detail:
-      "OOP Java là một phần nền tảng chung trong định hướng BCN. Học lập trình hướng đối tượng với Java và áp dụng kiến thức vào thực hành.",
-    tech: ["java"],
+      "Hướng Mobile đang triển khai từ cơ bản đến nâng cao, song song với lộ trình Web.",
+    tech: ["android"],
   },
 ];
 const advancedCopy = [
   {
-    label: "Website",
+    label: "Frontend",
     title: "TỪ GIAO DIỆN\nĐẾN WEBSITE HOÀN CHỈNH.",
-    summary: "Đi tiếp từ nền tảng Frontend Web Basic.",
+    summary: "Web và Mobile, từ cơ bản đến nâng cao.",
     tech: ["html5", "javascript", "react", "nextdotjs"],
   },
   {
-    label: "Mobile",
-    title: "ĐƯA Ý TƯỞNG\nLÊN ĐIỆN THOẠI.",
+    label: "Backend",
+    title: "XÂY PHẦN XỬ LÝ\nPHÍA MÁY CHỦ.",
     summary:
-      "React Native hoặc Android với Java / Kotlin: chọn hướng từ nền tảng bạn đã học.",
-    tech: ["react", "android", "java", "kotlin"],
+      "Hướng học Backend đang được triển khai tại BCN.",
+    tech: ["code"],
   },
   {
-    label: "NoCode",
+    label: "Non-dev",
     title: "LÀM SẢN PHẨM\nBẰNG GÓC NHÌN KHÁC.",
     summary:
       "Product Design, Business Analyst, UX/UI, thiết kế và truyền thông.",
     tech: ["figma"],
   },
   {
-    label: "Tự chọn",
-    title: "HƯỚNG ĐI RIÊNG.\nVẪN CÙNG MỘT ĐỘI.",
-    summary: "Tự chọn lộ trình, review định kỳ và tham gia dự án chung.",
+    label: "Fullstack",
+    title: "KẾT NỐI FRONTEND\nVÀ BACKEND.",
+    summary: "Phát triển năng lực ở cả giao diện và phía máy chủ.",
     tech: ["code"],
   },
 ];
@@ -130,11 +130,6 @@ const projectCopy = [
     title: "XÂY MVP.\nTÌM NGƯỜI DÙNG.",
     summary:
       "Thử sản phẩm, nhận phản hồi, rồi cải tiến. Mục tiêu nằm trong kế hoạch phát triển.",
-  },
-  {
-    label: "NoCode",
-    title: "THỬ ĐIỀU MỚI.\nGẮN KẾT ĐỒNG ĐỘI.",
-    summary: "Trải nghiệm ngoài lập trình, dành cho mọi thành viên.",
   },
 ];
 export const projectItems: WorkspaceItem[] = projectKinds.map(
@@ -198,7 +193,7 @@ export const growthItems: WorkspaceItem[] = growthPaths.map((item, index) => ({
     "ĐI TIẾP CÙNG\nPRODUCT LABS.",
   ][index],
   summary: [
-    "Product, Web, OOP Java. Rèn tự học và giữ cam kết.",
+    "C, Java, OOP, Web và Mobile. Rèn tự học và giữ cam kết.",
     "Làm MVP, tìm người dùng và cải tiến qua phản hồi.",
     "Khi đủ năng lực, hỗ trợ khóa sau và rèn kỹ năng hướng dẫn.",
     "Tham gia nhóm chuyên môn theo năng lực và mức độ đóng góp.",

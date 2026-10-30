@@ -1,4 +1,18 @@
 @font-face {
+  font-family: "Chakra Petch";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/chakra-petch-600.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Chakra Petch";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/chakra-petch-700.ttf") format("truetype");
+}
+@font-face {
   font-family: "Be Vietnam Pro";
   font-weight: 400;
   font-style: normal;
