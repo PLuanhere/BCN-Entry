@@ -28,6 +28,9 @@
   color-scheme: dark;
 }
 .newcomer-app {
+  --nav-text: #b8c0b2;
+  --nav-active: #a8d78c;
+  --nav-muted: #8b9483;
   --blue: var(--primary);
   --paper: var(--surface);
   --ink: var(--text-main);
@@ -70,9 +73,9 @@
 .newcomer-app .os-brand { color: var(--ink); font-family: var(--display); font-size: 20px; letter-spacing: .015em; }
 .newcomer-app .os-brand small { color: var(--text-secondary); font-family: "Be Vietnam Pro", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0; }
 .newcomer-app .os-brand > img { border: 1px solid #3d5068; border-radius: 5px; }
-.newcomer-app .primary-nav a { color: var(--text-secondary); font-family: var(--mono); font-size: 11px; font-weight: 400; border-radius: 4px; }
-.newcomer-app .primary-nav a:hover { color: var(--text-main); background: var(--control-hover); }
-.newcomer-app .primary-nav a[aria-current="page"] { color: var(--primary-strong); background: var(--control-active); box-shadow: none; }
+.newcomer-app .primary-nav a { color: var(--nav-text); font-family: "Be Vietnam Pro", sans-serif; font-size: 16px; font-weight: 600; line-height: 1.45; letter-spacing: 0; border-radius: 4px; }
+.newcomer-app .primary-nav a:hover { color: #e1e6dc; background: var(--control-hover); }
+.newcomer-app .primary-nav a[aria-current="page"] { color: var(--nav-active); background: #1b2318; box-shadow: none; }
 .newcomer-app .search-trigger { color: var(--text-secondary); background: var(--control-bg); border-color: var(--control-line); border-radius: 4px; }
 .newcomer-app .search-trigger:hover { color: var(--text-main); border-color: var(--control-line-active); background: var(--control-hover); }
 .newcomer-app .header-right { gap: 10px; }

@@ -6,6 +6,12 @@ import { photoUrl } from "./photoAlbums";
 import type { PhotoAlbumId } from "./photoAlbums";
 import PhotoStory from "./components/PhotoStory";
 
+function ActivityTabIcon({ type }: { type: Activity["id"] }) {
+  return <svg className="activity-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {type === "midautumn" ? <><path d="M9 3h6M12 3v3M7 6h10l2 6-2 6H7l-2-6zM5 12h14M10 6l-1 6 1 6m4-12 1 6-1 6M12 18v4m-3-1h6" /></> : type === "nocode" ? <><rect x="3" y="5" width="18" height="14" rx="3" /><path d="m10 9 6 3-6 3z" /></> : <>{[0,72,144,216,288].map(angle => <ellipse key={angle} cx="12" cy="7.5" rx="2.8" ry="4.2" transform={`rotate(${angle} 12 12)`} />)}<circle cx="12" cy="12" r="2" /></>}
+  </svg>;
+}
+
 function ActivityDrawing({ type }: { type: Activity["id"] }) {
   return (
     <svg
@@ -103,7 +109,7 @@ export default function Activities({
             key={item.id}
             id={`activity-tab-${index}`}
             role="tab"
-            aria-label={item.label}
+            aria-label={item.id === "nocode" ? "Làm video (NoCode)" : item.label}
             aria-selected={index === selected}
             aria-controls="activity-panel"
             tabIndex={index === selected ? 0 : -1}
@@ -124,11 +130,8 @@ export default function Activities({
                 [next]?.focus();
             }}
           >
-            <span className="mono">0{index + 1}</span>
-            {item.id === "nocode" ? "Làm video · NoCode" : item.label}
-            <span className="activity-tab-arrow" aria-hidden="true">
-              ↗
-            </span>
+            <ActivityTabIcon type={item.id} />
+            <span>{item.id === "nocode" ? "Làm video" : item.label}</span>
           </button>
         ))}
       </div>
