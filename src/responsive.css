@@ -1,0 +1,328 @@
+/* Final responsive layer: viewport height, safe areas and usable touch sizes. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+.newcomer-app { height: var(--app-height, 100dvh); }
+.newcomer-app .os-frame { grid-template-rows: auto minmax(0, 1fr) calc(var(--journey-footer-height) + var(--safe-bottom)); }
+.newcomer-app .journey-footer { padding-bottom: calc(10px + var(--safe-bottom)); }
+.newcomer-app .os-brand { min-width: 0; }
+.newcomer-app .os-brand small { width: max-content; max-width: 100%; white-space: nowrap; }
+.newcomer-app .dialog-index { container: question-dialog / size; }
+.photo-picker { display: none; }
+.newcomer-app .question-search .search-suggestions > button { min-height: 44px; }
+.newcomer-app .question-pagination { min-height: 44px; height: auto; }
+.newcomer-app .fit-dialog .dialog-header > button,
+.newcomer-app .question-pagination > button,
+.newcomer-app .photo-story .photo-controls button,
+.newcomer-app .fit-dialog .photo-story-full .photo-controls button { min-width: 44px; min-height: 44px; width: 44px; height: 44px; }
+.newcomer-app :is(.photo-picker select, .question-picker select):focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.newcomer-app .fit-dialog .photo-thumbnails button:focus-visible { outline-offset: -4px; }
+.fit-dialog .dialog-shell { grid-template-rows: 56px minmax(0, 1fr); }
+
+/* Landscape tablets have room for a single header row. */
+@media (min-width: 1024px) and (max-width: 1100px) {
+  .newcomer-app .os-header { display: flex; min-height: 72px; padding: 10px 24px; gap: 16px; }
+  .newcomer-app .primary-nav { width: auto; margin-inline: auto; }
+  .newcomer-app .primary-nav a { padding-inline: 9px; }
+}
+@media (min-width: 1600px) {
+  .newcomer-app { --screen-pad: 32px max(56px, calc((100vw - 1520px) / 2)); }
+}
+
+/* Portrait tablets: a wide photo and readable note, rather than a narrow overlay. */
+@media (min-width: 768px) and (max-width: 1023px) and (min-height: 800px) {
+  .notice-scene { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 16px; }
+  .notice-photo { grid-column: 1; grid-row: 1; margin: 0; }
+  .notice-note { grid-column: 1; grid-row: 2; padding: 20px 24px; align-self: stretch; }
+  .newcomer-app .notice-note > p { max-width: none; }
+  .newcomer-app .notice-note .notice-affiliation { font-size: 28px; margin-bottom: 8px; }
+}
+
+@media (max-width: 767px) {
+  .newcomer-app { --screen-pad: clamp(14px, 2.4dvh, 22px) clamp(16px, 4.5vw, 28px); padding: var(--safe-top) var(--safe-right) 0 var(--safe-left); }
+  .newcomer-app .os-header { padding: 8px 16px 0; }
+  .newcomer-app .os-brand { line-height: 1.25; }
+  .newcomer-app .os-brand small { font-size: 11px; line-height: 1.5; }
+  .newcomer-app .primary-nav a { font-size: 11px; font-weight: 600; }
+  .newcomer-app .workspace-tabs > button { min-height: 44px; padding: 8px 6px; gap: 6px; font-size: 12px; }
+  .newcomer-app .track-tab-icon { display: inline-flex; }
+  .newcomer-app .track-tab-icon .tech-mark > :is(img, svg),
+  .newcomer-app .track-tab-icon > .content-icon { width: 16px; height: 16px; flex-basis: 16px; }
+  .newcomer-app .track-icons { min-height: 44px; gap: 12px; }
+  .newcomer-app .track-icons .tech-mark > span { font-size: 11px; }
+  .newcomer-app .activity-tabs > button { min-height: 44px; font-size: 12px; }
+  .newcomer-app .section-tools > .text-action { min-height: 44px; font-size: 12px; }
+  .newcomer-app .join-layout { grid-template-rows: auto auto; align-content: center; align-items: stretch; gap: 24px; }
+  .newcomer-app .join-status-copy { font-size: 14px; line-height: 1.65; margin-bottom: 0; }
+  .newcomer-app .join-facts > div { font-size: 13px; }
+  .newcomer-app .value-card p { font-size: 14px; line-height: 1.6; }
+  .newcomer-app .value-card h2 { font-size: 16px; }
+
+  .newcomer-app .fit-dialog, .newcomer-app .fit-dialog.photo-dialog {
+    position: fixed; inset: calc(var(--visual-top, 0px) + var(--safe-top) + 12px) calc(var(--safe-right) + 12px) auto calc(var(--safe-left) + 12px);
+    width: calc(100vw - var(--safe-left) - var(--safe-right) - 24px);
+    max-width: calc(100vw - var(--safe-left) - var(--safe-right) - 24px);
+    height: calc(var(--app-height, 100dvh) - var(--safe-top) - var(--safe-bottom) - 24px);
+    max-height: calc(var(--app-height, 100dvh) - var(--safe-top) - var(--safe-bottom) - 24px); margin: 0 auto;
+  }
+  .newcomer-app .fit-dialog .dialog-scroll { padding: 14px; }
+  .newcomer-app .question-search .search-input-wrap > input,
+  .newcomer-app .question-picker select,
+  .newcomer-app .photo-picker select { font-size: 16px; min-height: 48px; height: 48px; }
+  .newcomer-app .question-search .search-suggestions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .newcomer-app .question-search .search-suggestions > button { min-height: 44px; padding: 8px; font-size: 12px; }
+  .newcomer-app .question-content { grid-template-rows: 48px minmax(0, 1fr); }
+  .newcomer-app .question-answer p { font-size: 14px; line-height: 1.6; }
+  .newcomer-app .question-answer .text-action { min-height: 44px; font-size: 12px; }
+  .newcomer-app .question-pagination { min-height: 44px; }
+  .newcomer-app .fit-dialog .photo-story-full .photo-count { display: inline; font-size: 11px; }
+  .newcomer-app .fit-dialog .photo-story-full .photo-caption-copy p { font-size: 12px; line-height: 1.5; }
+  .newcomer-app .fit-dialog .document-pagination button { min-height: 44px; }
+}
+@media (max-width: 359px) {
+  .newcomer-app .workspace-tabs > button { font-size: 11px; padding-inline: 4px; }
+  .newcomer-app .section-tools > .text-action { font-size: 11px; }
+}
+@media (min-width: 480px) and (max-width: 767px) and (min-height: 600px) {
+  .newcomer-app .newcomer-home .notice-title { font-size: clamp(42px, 8vw, 58px); }
+  .notice-title > span { display: inline; }
+}
+@media (max-width: 767px) and (min-height: 740px) {
+  .newcomer-app .question-answer h3 { display: block; font-size: 17px; line-height: 1.4; margin-bottom: 10px; }
+}
+@media (max-width: 767px) and (max-height: 700px) {
+  .newcomer-app .value-card p { font-size: 13px; }
+  .newcomer-app .value-card h2 { font-size: 15px; }
+  .newcomer-app .join-layout { gap: 16px; }
+  .newcomer-app .join-status-copy { font-size: 13px; }
+  .newcomer-app .fit-dialog .question-view > h2, .newcomer-app .question-search .search-suggestions { display: none; }
+}
+/* Bring the real study photo back whenever the usable content height allows it. */
+@media (max-width: 767px) {
+  @container screen (min-height: 620px) {
+    .newcomer-app .workspace-scene { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 14px; }
+    .newcomer-app .workspace-copy { grid-area: 1 / 1; height: auto; gap: 14px; justify-content: flex-start; }
+    .newcomer-app .study-track-title { font-size: 26px; line-height: 1.3; }
+    .newcomer-app .workspace-focus .body-copy { line-height: 1.6; }
+    .newcomer-app .workspace-visual.study-photo { display: grid; grid-area: 2 / 1; border-bottom: 0; }
+    .newcomer-app .study-photo figcaption { padding: 8px 12px; }
+    .newcomer-app .study-photo figcaption .eyebrow { display: none; }
+    .newcomer-app .study-photo figcaption p { margin: 0; font-size: 11px; line-height: 1.4; }
+  }
+}
+
+/* One large selector beats a row of tiny thumbnails on a small phone. */
+@media (max-width: 599px) {
+  .newcomer-app .fit-dialog .photo-thumbnails { display: none; }
+  .newcomer-app .photo-picker { display: block; grid-area: 3 / 1; min-width: 0; }
+  .newcomer-app .photo-picker select { width: 100%; padding: 8px 12px; border: 1px solid var(--control-line); border-radius: var(--radius-control); background: var(--control-bg); color: var(--text-secondary); }
+  .newcomer-app .fit-dialog .photo-story-full { grid-template-rows: minmax(0, 1fr) auto 48px; }
+}
+
+/* Short, wide viewports get a real landscape layout, including 568 x 320. */
+@media (min-width: 480px) and (max-height: 540px) and (orientation: landscape) {
+  .newcomer-app { --journey-footer-height: 62px; --screen-pad: 10px 16px; padding: calc(6px + var(--safe-top)) calc(6px + var(--safe-right)) 0 calc(6px + var(--safe-left)); }
+  .newcomer-app .os-frame { grid-template-rows: 50px minmax(0, 1fr) calc(62px + var(--safe-bottom)); }
+  .newcomer-app .os-header { display: flex; min-height: 0; padding: 2px 10px; gap: 10px; }
+  .newcomer-app .os-brand > span { display: none; }
+  .newcomer-app .os-brand > img { width: 30px; height: 30px; }
+  .newcomer-app .primary-nav { width: auto; margin: 0 auto; gap: 0; }
+  .newcomer-app .primary-nav a { flex-direction: row; min-height: 44px; padding: 4px 8px; gap: 5px; font-size: 10px; }
+  .newcomer-app .search-trigger { min-height: 44px; width: 44px; min-width: 44px; padding: 8px; }
+  .newcomer-app .search-trigger > span { display: none; }
+  .newcomer-app .journey-footer { grid-template-columns: 44px auto minmax(180px, 1fr); gap: 12px; padding: 8px 16px calc(8px + var(--safe-bottom)); }
+  .newcomer-app .journey-footer .page-prev { width: 44px; min-width: 44px; min-height: 44px; padding: 8px; }
+  .newcomer-app .journey-footer .page-prev > span:last-child { display: none; }
+  .newcomer-app .journey-next { min-height: 44px; }
+  .newcomer-app .newcomer-home { gap: 8px; padding-block: 8px; }
+  .newcomer-app .newcomer-home .notice-title { font-size: 30px; line-height: 1.2; }
+  .notice-title > span { display: inline; }
+  .notice-scene { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: minmax(0, 1fr); gap: 12px; }
+  .notice-photo { grid-area: 1 / 1; margin: 0; }
+  .notice-note { grid-area: 1 / 2; align-self: center; padding: 10px 12px; }
+  .notice-role { font-size: 11px; margin-bottom: 3px; }
+  .newcomer-app .notice-note .notice-affiliation { font-size: 17px; line-height: 1.3; margin-bottom: 5px; }
+  .newcomer-app .notice-note > p { font-size: 12px; line-height: 1.5; }
+  .newcomer-app .newcomer-home .notice-tearoff { padding-top: 5px; }
+  .newcomer-app .newcomer-home .recruitment-note { font-size: 11px; }
+  .newcomer-app .newcomer-home .recruitment-note > strong { font-size: 12px; }
+  .newcomer-app .workspace-stage { grid-template-rows: auto minmax(0, 1fr); gap: 8px; }
+  .newcomer-app .workspace-header { position: absolute; inset-inline: 16px; width: auto; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .newcomer-app .workspace-tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .newcomer-app .workspace-tabs > button { min-height: 44px; padding: 6px 4px; font-size: 11px; }
+  .newcomer-app .track-tab-icon { display: none; }
+  .newcomer-app .workspace-tabs > button:nth-child(n) { border-radius: 0; }
+  .newcomer-app .workspace-tabs > button:first-child { border-radius: var(--radius-tab-edge) 0 0 var(--radius-tab-edge); }
+  .newcomer-app .workspace-tabs > button:last-child { border-radius: 0 var(--radius-tab-edge) var(--radius-tab-edge) 0; }
+  .newcomer-app .workspace-scene { display: block; }
+  .newcomer-app .workspace-copy { display: grid; grid-template-columns: minmax(0, 1fr) 112px; height: 100%; align-items: center; gap: 16px; }
+  .newcomer-app .workspace-focus { gap: 6px; }
+  .newcomer-app .study-track-title { font-size: 22px; line-height: 1.2; white-space: normal; }
+  .newcomer-app .workspace-focus .body-copy { font-size: 13px; line-height: 1.5; }
+  .newcomer-app .track-icons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: center; gap: 8px; }
+  .newcomer-app .track-icons .tech-mark { flex-direction: column; }
+  .newcomer-app .track-icons .tech-mark > :is(img, svg) { width: 20px; height: 20px; }
+  .newcomer-app .track-icons .tech-mark > span { font-size: 10px; }
+  .newcomer-app .workspace-visual.study-photo, .workspace-help { display: none; }
+  .newcomer-app .activities-layout { grid-template-columns: 1.1fr 1fr; grid-template-rows: minmax(0, 1fr); gap: 18px; }
+  .newcomer-app .activities-copy, .newcomer-app .activities-media { grid-area: auto; }
+  .newcomer-app .activity-copy-panel h2 { font-size: 21px; line-height: 1.25; }
+  .newcomer-app .activity-copy-panel .body-copy { font-size: 12px; line-height: 1.5; }
+  .newcomer-app .activity-tabs > button { min-height: 44px; }
+  .newcomer-app .join-layout { grid-template-columns: .9fr 1.1fr; grid-template-rows: minmax(0, 1fr); align-content: normal; align-items: center; gap: 20px; }
+  .newcomer-app .join-intro h1 { font-size: 28px; margin: 4px 0 8px; }
+  .newcomer-app .join-next { padding: 14px; }
+  .newcomer-app .join-status-copy { font-size: 12px; }
+  .newcomer-app .join-facts > div { grid-template-columns: 56px minmax(0, 1fr); gap: 8px; padding-block: 6px; font-size: 12px; }
+  .newcomer-app .join-next h2 { display: none; }
+  .newcomer-app .values-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); gap: 10px; }
+  .newcomer-app .value-card { grid-template-columns: minmax(0, 1fr); }
+  .newcomer-app .value-card > img { display: none; }
+  .newcomer-app .value-card > div { padding: 10px; }
+  .newcomer-app .value-card h2 { font-size: 15px; line-height: 1.3; }
+  .newcomer-app .value-card p { font-size: 12px; line-height: 1.5; }
+  .newcomer-app .fit-dialog, .newcomer-app .fit-dialog.photo-dialog { inset: calc(var(--safe-top) + 10px) calc(var(--safe-right) + 12px) auto calc(var(--safe-left) + 12px); width: calc(100vw - var(--safe-left) - var(--safe-right) - 24px); max-width: calc(100vw - var(--safe-left) - var(--safe-right) - 24px); height: calc(var(--app-height, 100dvh) - var(--safe-top) - var(--safe-bottom) - 20px); max-height: calc(var(--app-height, 100dvh) - var(--safe-top) - var(--safe-bottom) - 20px); margin: 0 auto; }
+  .newcomer-app .fit-dialog .dialog-shell { grid-template-rows: 48px minmax(0, 1fr); }
+  .newcomer-app .fit-dialog .dialog-header { padding-block: 2px; }
+  .newcomer-app .fit-dialog .dialog-scroll { padding: 10px 14px; }
+  .newcomer-app .question-view { grid-template-rows: auto minmax(0, 1fr) auto; }
+  .newcomer-app .question-content { grid-template-columns: .85fr 1.15fr; grid-template-rows: minmax(0, 1fr); gap: 12px; }
+  .newcomer-app .question-picker { display: block; }
+  .newcomer-app .question-picker select { font-size: 16px; height: 48px; }
+  .newcomer-app .question-answer { padding: 12px; }
+  .newcomer-app .question-answer p { font-size: 13px; line-height: 1.5; }
+  .newcomer-app .question-answer .text-action { display: none; }
+  .newcomer-app .fit-dialog .photo-story-full { grid-template-columns: minmax(0, 1fr) 148px; grid-template-rows: minmax(0, 1fr) auto; gap: 8px 12px; }
+  .newcomer-app .fit-dialog .photo-thumbnails { display: none; }
+  .newcomer-app .photo-picker { display: block; grid-area: 1 / 2 / 3; min-width: 0; }
+  .newcomer-app .photo-picker select { font-size: 16px; min-height: 48px; width: 100%; padding: 8px; border: 1px solid var(--control-line); border-radius: var(--radius-control); color: var(--text-secondary); background: var(--control-bg); }
+}
+@media (min-width: 480px) and (max-height: 360px) and (orientation: landscape) {
+  .newcomer-app .activities-stage { grid-template-rows: auto minmax(0, 1fr); gap: 8px; }
+  .newcomer-app :is(.activities-heading, .reading-heading) { position: absolute; inset-inline: 16px; width: auto; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .newcomer-app .newcomer-culture { grid-template-rows: minmax(0, 1fr) auto; gap: 8px; }
+  .newcomer-app .notice-note { padding: 8px 10px; }
+  .newcomer-app .notice-role { font-size: 10px; }
+  .newcomer-app .notice-note .notice-affiliation { font-size: 16px; }
+  .newcomer-app .notice-note > p { font-size: 11.5px; }
+}
+@media (max-width: 650px) and (max-height: 540px) and (orientation: landscape) {
+  .newcomer-app .primary-nav .nav-step { display: none; }
+  .newcomer-app .workspace-header .eyebrow { display: none; }
+}
+@media (min-width: 480px) and (max-height: 420px) and (orientation: landscape) {
+  .newcomer-app .registration-layout { display: block; }
+  .newcomer-app .registration-photo { display: none; }
+  .newcomer-app .registration-content { display: grid; grid-template-columns: .9fr 1.1fr; grid-template-rows: auto auto minmax(0, 1fr); gap: 8px 20px; align-content: center; }
+  .newcomer-app .registration-content > .status-label { grid-area: 1 / 1; justify-self: start; }
+  .newcomer-app .registration-content > h2 { grid-area: 2 / 1; font-size: 23px; margin: 0; }
+  .newcomer-app .registration-intro { grid-area: 3 / 1; font-size: 13px; }
+  .newcomer-app .registration-facts { grid-area: 1 / 2 / 3; margin: 0; }
+  .newcomer-app .registration-facts > div { grid-template-columns: 20px 62px minmax(0, 1fr); gap: 6px; padding: 6px 0; }
+  .newcomer-app .registration-content > .action-primary { grid-area: 3 / 2; align-self: start; min-height: 44px; }
+}
+
+/* Search remains usable above the on-screen keyboard; Enter reveals the answer. */
+.newcomer-app[data-keyboard="true"] .question-view > h2,
+.newcomer-app[data-keyboard="true"] .question-search .search-suggestions,
+.newcomer-app[data-keyboard="true"] .question-search #search-count,
+.newcomer-app[data-keyboard="true"] .question-answer :is(h3, .content-icon, .text-action) { display: none; }
+.newcomer-app[data-keyboard="true"] .question-view { grid-template-rows: auto minmax(0, 1fr) auto; gap: 8px; }
+.newcomer-app[data-keyboard="true"] .question-answer { padding: 12px; }
+.newcomer-app[data-keyboard="true"] .question-answer p { font-size: 13px; line-height: 1.5; }
+.newcomer-app[data-keyboard="true"] .search-empty { padding: 12px; font-size: 13px; line-height: 1.5; }
+.newcomer-app[data-keyboard="true"] .search-empty > .content-icon { display: none; }
+.newcomer-app[data-keyboard="true"] .fit-dialog { height: calc(var(--app-height) - var(--safe-top) - 24px); max-height: calc(var(--app-height) - var(--safe-top) - 24px); }
+.newcomer-app[data-keyboard-compact="true"] .question-content { grid-template-rows: 48px; }
+.newcomer-app[data-keyboard-compact="true"] .question-answer { display: none; }
+
+@media (pointer: coarse) {
+  .newcomer-app :is(.search-input-wrap input, .question-picker select, .photo-picker select) { font-size: 16px; }
+}
+@media (max-width: 767px) and (min-height: 541px) {
+  @container question-dialog (max-height: 680px) {
+    .newcomer-app .question-view > h2, .newcomer-app .question-list,
+    .newcomer-app .question-answer > .content-icon, .newcomer-app .question-answer h3 { display: none; }
+    .newcomer-app .question-view { grid-template-rows: auto minmax(0, 1fr) auto; }
+    .newcomer-app .question-content { grid-template-columns: minmax(0, 1fr); grid-template-rows: 48px minmax(0, 1fr); }
+    .newcomer-app .question-picker { display: block; }
+    .newcomer-app .question-picker select { width: 100%; height: 48px; font-size: 16px; padding: 8px; }
+  }
+}
+
+/* Restore the visible question list on wider screens. The compact selector is
+   for phones and short landscape viewports, not ordinary desktop dialogs. */
+@media (min-width: 768px) and (min-height: 541px) {
+  .newcomer-app .question-view { grid-template-rows: auto auto minmax(0, 1fr); }
+  .newcomer-app .question-pagination { display: none; }
+  .newcomer-app .question-list > button { min-height: 44px; padding: 6px 12px; font-size: 12px; }
+  .newcomer-app .question-answer { justify-content: flex-start; align-self: start; max-height: 100%; padding: 18px; }
+  .newcomer-app .question-answer > .content-icon { display: none; }
+  .newcomer-app .question-answer h3 { line-height: 1.4; margin-bottom: 10px; }
+  .newcomer-app .question-answer p { line-height: 1.65; }
+  .newcomer-app .question-answer .text-action { min-height: 44px; margin-top: 8px; }
+}
+@media (min-width: 768px) and (min-height: 541px) and (max-height: 680px) {
+  .newcomer-app .fit-dialog .question-view > h2 { display: none; }
+  .newcomer-app .question-view { grid-template-rows: auto minmax(0, 1fr); }
+}
+@media (min-width: 768px) and (min-height: 541px) and (max-height: 640px) {
+  .newcomer-app .question-search :is(.search-suggestions, #search-count) { display: none; }
+}
+@media (max-width: 767px) and (orientation: portrait) {
+  @container screen (max-height: 390px) {
+    .newcomer-app .workspace-header .eyebrow, .newcomer-app .activities-heading .eyebrow, .newcomer-app .reading-heading .eyebrow { display: none; }
+    .newcomer-app .workspace-header h1, .newcomer-app .activities-heading h1, .newcomer-app .reading-heading h1 { margin-top: 0; }
+    .newcomer-app .value-card > div { padding: 8px 12px; }
+    .newcomer-app .value-card h2 { font-size: 14px; margin-bottom: 4px; }
+    .newcomer-app .value-card p { font-size: 12px; line-height: 1.55; }
+  }
+}
+
+/* Keep the real join photo at every size; rearrange it instead of hiding it. */
+.newcomer-app .join-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto; gap: 16px clamp(24px, 5vw, 80px); align-content: center; }
+.newcomer-app .commit-content.join-intro { grid-area: 1 / 1; }
+.newcomer-app .join-community-photo { display: grid; grid-area: 2 / 1; grid-template-rows: minmax(0, 1fr) auto; gap: 6px; min-width: 0; min-height: 0; margin: 0; }
+.newcomer-app .join-community-photo img { width: 100%; height: clamp(100px, 24cqh, 180px); min-height: 0; object-fit: cover; object-position: 50% 36%; }
+.newcomer-app .join-community-photo figcaption { padding: 0; font-size: 11px; line-height: 1.5; }
+.newcomer-app .join-next { grid-area: 1 / 2 / 3; align-self: center; }
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .newcomer-app .join-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(80px, 1fr) auto; gap: 12px; align-content: stretch; }
+  .newcomer-app .join-community-photo { grid-area: 2 / 1; align-self: stretch; }
+  .newcomer-app .join-community-photo img { height: 100%; }
+  .newcomer-app .join-next { grid-area: 3 / 1; padding: 16px; }
+  @container screen (max-height: 430px) {
+    .newcomer-app .join-layout { gap: 8px; }
+    .newcomer-app .join-intro > .eyebrow { display: none; }
+    .newcomer-app .join-intro h1 { font-size: 28px; margin: 0 0 6px; }
+    .newcomer-app .join-facts > div { grid-template-columns: 70px minmax(0, 1fr); gap: 8px; padding-block: 6px; font-size: 12px; }
+    .newcomer-app .join-next { padding: 12px; }
+    .newcomer-app .join-status-copy { font-size: 13px; line-height: 1.6; margin: 8px 0 0; }
+  }
+  @container screen (max-height: 360px) {
+    .newcomer-app .join-layout { grid-template-columns: minmax(0, 1.2fr) minmax(72px, .8fr); grid-template-rows: auto auto; gap: 8px 12px; align-content: center; }
+    .newcomer-app .join-community-photo { grid-area: 1 / 2; }
+    .newcomer-app .join-community-photo figcaption { display: none; }
+    .newcomer-app .join-next { grid-area: 2 / 1 / 3 / 3; }
+    .newcomer-app .join-intro h1 { font-size: 22px; }
+    .newcomer-app .join-facts > div { display: block; padding-block: 4px; }
+    .newcomer-app .join-facts dt { font-size: 11px; }
+  }
+}
+
+@media (min-width: 480px) and (max-height: 540px) and (orientation: landscape) {
+  .newcomer-app .join-layout { grid-template-columns: minmax(80px, .75fr) minmax(0, 1fr) minmax(0, 1.25fr); grid-template-rows: minmax(0, 1fr); gap: 12px; align-content: stretch; }
+  .newcomer-app .commit-content.join-intro { grid-area: 1 / 2; align-self: center; }
+  .newcomer-app .join-community-photo { grid-area: 1 / 1; grid-template-rows: minmax(0, 1fr); align-self: stretch; }
+  .newcomer-app .join-community-photo img { height: 100%; }
+  .newcomer-app .join-community-photo figcaption, .newcomer-app .join-intro > .eyebrow { display: none; }
+  .newcomer-app .join-intro h1 { font-size: 22px; line-height: 1.25; margin: 0 0 6px; }
+  .newcomer-app .join-facts > div { display: block; padding-block: 4px; font-size: 12px; line-height: 1.5; }
+  .newcomer-app .join-facts dt { font-size: 11px; }
+  .newcomer-app .join-next { grid-area: 1 / 3; padding: 10px; }
+  .newcomer-app .join-status-copy { font-size: 12px; line-height: 1.5; margin: 8px 0 0; }
+}

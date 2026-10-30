@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useContentMotion } from "./useContentMotion";
 import { activities } from "./activitiesData";
 import type { Activity } from "./activitiesData";
 import { photoUrl } from "./photoAlbums";
@@ -79,21 +80,17 @@ export default function Activities({
   openPhotos: (album: PhotoAlbumId, index?: number) => void;
 }) {
   const tabsRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  useContentMotion(panelRef, selected, ".activity-copy-panel.is-active, .activity-media-panel.is-active");
   return (
     <section className="stage activities-stage" aria-labelledby="stage-title">
       <header className="activities-heading">
         <div>
-          <span className="content-label mono">05 / BCN AFTER HOURS</span>
+          <span className="eyebrow">HOẠT ĐỘNG BCN</span>
           <h1 id="stage-title">
-            NGOÀI CODE. <br />
-            VẪN CÙNG MỘT ĐỘI.
+            Ngoài giờ học.
           </h1>
         </div>
-        <p>
-          Tạm gác laptop.
-          <br />
-          Thêm thời gian để hiểu nhau.
-        </p>
       </header>
       <div
         className="activity-tabs"
@@ -128,45 +125,34 @@ export default function Activities({
             }}
           >
             <span className="mono">0{index + 1}</span>
-            {item.label}
+            {item.id === "nocode" ? "Làm video · NoCode" : item.label}
             <span className="activity-tab-arrow" aria-hidden="true">
               ↗
             </span>
           </button>
         ))}
-        <span
-          className="activity-tab-indicator"
-          aria-hidden="true"
-          style={{ transform: `translateX(${selected * 100}%)` }}
-        />
       </div>
       <div
         className="activities-layout"
+        ref={panelRef}
         id="activity-panel"
         role="tabpanel"
         aria-labelledby={`activity-tab-${selected}`}
         tabIndex={0}
       >
         <div className="activities-copy">
-          <div className="activity-copy-stack" aria-live="polite">
+          <div className="activity-copy-stack activity-summary" aria-live="polite">
             {activities.map((item, index) => (
               <div
                 className={`activity-copy-panel ${index === selected ? "is-active" : ""}`}
                 key={item.id}
                 aria-hidden={index !== selected}
+                hidden={index !== selected}
                 inert={index !== selected}
               >
                 <span className="content-label mono">{item.kicker}</span>
                 <h2>{item.title}</h2>
                 <p className="body-copy">{item.text}</p>
-                <ul className="activity-moments">
-                  {item.moments.map((moment) => (
-                    <li key={moment}>
-                      <span aria-hidden="true">↗</span>
-                      {moment}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
@@ -177,6 +163,7 @@ export default function Activities({
               className={`activity-media-panel ${index === selected ? "is-active" : ""}`}
               key={item.id}
               aria-hidden={index !== selected}
+              hidden={index !== selected}
               inert={index !== selected}
             >
               {item.photoAlbum ? (
@@ -198,15 +185,15 @@ export default function Activities({
                 <div
                   className="activity-placeholder"
                   role="img"
-                  aria-label={`Vị trí ảnh ${item.label}, sẽ được bổ sung`}
+                  aria-label={`Minh họa hoạt động ${item.label}`}
                 >
                   <span className="activity-frame-number mono">
                     PHOTO / 0{index + 1}
                   </span>
                   <ActivityDrawing type={item.id} />
                   <div className="activity-placeholder-caption mono">
-                    <strong>ẢNH {item.label.toUpperCase()}</strong>
-                    <span>Ảnh sẽ được bổ sung</span>
+                    <strong>{item.label.toUpperCase()}</strong>
+                    <span>Minh họa hoạt động</span>
                   </div>
                   <span className="activity-frame-cross" aria-hidden="true">
                     +

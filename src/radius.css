@@ -1,0 +1,43 @@
+/* Shared corner sizes; the larger blocks stay distinct from small controls. */
+:root {
+  --radius-block: 24px;
+  --radius-dialog: 28px;
+  --radius-control: 12px;
+  --radius-detail: 8px;
+  --radius-tabs: 16px;
+  --radius-tab-edge: calc(var(--radius-tabs) - 1px);
+}
+
+.newcomer-app .os-frame { border-radius: var(--radius-block); }
+.newcomer-app :is(.notice-note, .workspace-visual, .activities-media, .value-card, .join-next, .question-answer) { border-radius: var(--radius-block); }
+.newcomer-app :is(.notice-photo, .welcome-photo) > button,
+.newcomer-app :is(.registration-photo > img, .join-community-photo img),
+.newcomer-app .fit-dialog .photo-story-full .photo-frame { border-radius: var(--radius-block); }
+.newcomer-app .content-dialog { border-radius: var(--radius-dialog); }
+
+.newcomer-app :is(.action-primary, .action-secondary, .search-trigger, .notice-photo-label, .photo-open, .photo-expand > span),
+.newcomer-app .primary-nav a,
+.newcomer-app .journey-footer .page-prev,
+.newcomer-app .fit-dialog .dialog-header > button,
+.newcomer-app :is(.search-input-wrap input, .question-picker select, .search-suggestions > button, .question-list > button, .question-pagination > button),
+.newcomer-app .photo-story .photo-controls button,
+.newcomer-app .fit-dialog .photo-story-full .photo-controls button { border-radius: var(--radius-control); }
+
+.newcomer-app .fit-dialog .photo-thumbnails button { border-radius: var(--radius-control); }
+.newcomer-app .fit-dialog .photo-thumbnails img,
+.newcomer-app :is(.status-label, .dialog-brand img),
+.newcomer-app .os-brand > img { border-radius: var(--radius-detail); }
+
+.newcomer-app :is(.workspace-tabs, .activity-tabs) { border-radius: var(--radius-tabs); }
+.newcomer-app :is(.workspace-tabs, .activity-tabs) > button { border-radius: 0; }
+.newcomer-app :is(.workspace-tabs, .activity-tabs) > button:first-child { border-radius: var(--radius-tab-edge) 0 0 var(--radius-tab-edge); }
+.newcomer-app :is(.workspace-tabs, .activity-tabs) > button:last-child { border-radius: 0 var(--radius-tab-edge) var(--radius-tab-edge) 0; }
+
+@media (max-width: 767px) {
+  .newcomer-app .os-frame { border-radius: 0; }
+  /* Six study tabs form two rows; round only the four outside corners. */
+  .newcomer-app .workspace-tabs > button:first-child { border-radius: var(--radius-tab-edge) 0 0 0; }
+  .newcomer-app .workspace-tabs > button:nth-child(3) { border-radius: 0 var(--radius-tab-edge) 0 0; }
+  .newcomer-app .workspace-tabs > button:nth-child(4) { border-radius: 0 0 0 var(--radius-tab-edge); }
+  .newcomer-app .workspace-tabs > button:last-child { border-radius: 0 0 var(--radius-tab-edge) 0; }
+}

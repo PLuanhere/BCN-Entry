@@ -14,10 +14,10 @@ export type PhotoAlbum = {
 
 export const photoAlbums: Record<PhotoAlbumId, PhotoAlbum> = {
   training: {
-    title: "CÙNG BẮT ĐẦU TỪ C.",
+    title: "Cùng bắt đầu từ C.",
     code: "TRAINING C / KHÓA MỚI",
     intro:
-      "Những buổi training C dành cho khóa mới: cùng học, thực hành và trao đổi trực tiếp.",
+      "Những buổi học và thực hành của thành viên BCN.",
     photos: [
       {
         file: "BCN_Train02.jpg",
@@ -62,10 +62,10 @@ export const photoAlbums: Record<PhotoAlbumId, PhotoAlbum> = {
     ],
   },
   midautumn: {
-    title: "NGOÀI DÒNG CODE, CÒN CÓ NHAU.",
+    title: "Cùng làm, cùng vui.",
     code: "VĂN HÓA / TRUNG THU",
     intro:
-      "Đêm hội trăng rằm và những chiếc lồng đèn trong hoạt động “Khéo tay dựng đèn”. Một phần đời sống BCN ngoài giờ học.",
+      "Trung Thu và những sản phẩm trong hoạt động Khéo tay dựng đèn.",
     photos: [
       {
         file: "BCN_TrungThu.jpg",
@@ -90,10 +90,10 @@ export const photoAlbums: Record<PhotoAlbumId, PhotoAlbum> = {
     ],
   },
   recruitment: {
-    title: "NHỮNG MÙA KẾT NỐI.",
+    title: "Những mùa kết nối.",
     code: "ẤN PHẨM / TUYỂN CTV",
     intro:
-      "Ấn phẩm tuyển cộng tác viên BCN các mùa 2025 và 2026. Đây là ảnh tư liệu; thông tin đăng ký hiện tại sẽ được cập nhật ở nút đăng ký của hành trình.",
+      "Tư liệu 2025–2026. Thông tin tuyển K23 được cập nhật trên fanpage BCN.",
     photos: [
       {
         file: "BCN_TuyenCTV_2026.jpg",

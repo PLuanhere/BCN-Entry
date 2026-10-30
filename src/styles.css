@@ -151,7 +151,7 @@ summary:focus-visible {
   font-weight: 400;
 }
 .stage-viewport {
-  view-transition-name: bcn-stage;
+
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
@@ -1462,69 +1462,4 @@ summary::-webkit-details-marker {
 }
 .index-stages {
   font-size: 12px;
-}
-/* Snapshot only the reading viewport; the OS frame stays stationary. */
-:root {
-  view-transition-name: none;
-  --stage-enter-shift: 72px;
-  --stage-exit-shift: -40px;
-}
-:root[data-stage-direction="backward"] {
-  --stage-enter-shift: -72px;
-  --stage-exit-shift: 40px;
-}
-::view-transition {
-  pointer-events: none;
-}
-::view-transition-group(bcn-stage) {
-  animation-duration: 520ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  overflow: clip;
-}
-::view-transition-image-pair(bcn-stage) {
-  isolation: isolate;
-}
-::view-transition-old(bcn-stage),
-::view-transition-new(bcn-stage) {
-  width: 100%;
-  height: 100%;
-  object-fit: none;
-  object-position: left top;
-  mix-blend-mode: normal;
-}
-::view-transition-old(bcn-stage) {
-  animation: stage-leave 340ms cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-::view-transition-new(bcn-stage) {
-  animation: stage-arrive 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes stage-leave {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(var(--stage-exit-shift));
-  }
-}
-@keyframes stage-arrive {
-  from {
-    opacity: 0;
-    transform: translateX(var(--stage-enter-shift));
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-@media (max-width: 767px) {
-  :root {
-    --stage-enter-shift: 36px;
-    --stage-exit-shift: -20px;
-  }
-  :root[data-stage-direction="backward"] {
-    --stage-enter-shift: -36px;
-    --stage-exit-shift: 20px;
-  }
 }

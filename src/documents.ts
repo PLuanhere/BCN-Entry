@@ -1,6 +1,5 @@
 import {
   culturePillars,
-  entryProcess,
   expectations,
   growthPaths,
   workflow,
@@ -50,12 +49,12 @@ export const documents = {
     code: "BCN / GIỚI THIỆU",
     title: "MỘT CỘNG ĐỒNG THỰC HÀNH.",
     intro:
-      "Học công nghệ, làm sản phẩm và cùng nhau trưởng thành. BCN tiếp nối tinh thần cựu sinh viên hỗ trợ sinh viên.",
+      "Ban Công Nghệ thuộc Đoàn khoa Công nghệ Thông tin, Trường Đại học Công nghiệp TP.HCM (IUH). Cùng học, thực hành và kết nối.",
     sections: [
       {
         title: "Một nơi để bắt đầu",
         points: [
-          "Dành cho sinh viên yêu công nghệ và có ý chí vươn lên.",
+          "Dành cho sinh viên khoa Công nghệ Thông tin, IUH. Không thu phí.",
           "Có người đồng hành để học, thực hành và tìm cách vượt qua khó khăn.",
         ],
       },
@@ -73,7 +72,7 @@ export const documents = {
     code: "BẢN SẮC / CHÚNG MÌNH",
     title: "MÁI NHÀ CHUNG CỦA NGƯỜI YÊU CÔNG NGHỆ.",
     intro:
-      "Ban Công Nghệ là cộng đồng thực hành dành cho sinh viên muốn học, xây dựng sản phẩm và trưởng thành qua dự án thực tế.",
+      "Ban Công Nghệ (BCN) thuộc Đoàn khoa Công nghệ Thông tin, IUH. Ban dành cho sinh viên khoa CNTT muốn cùng học, thực hành và tham gia hoạt động chung.",
     sections: [
       {
         title: "Vì sao BCN tồn tại?",
@@ -209,7 +208,7 @@ export const documents = {
         points: [
           "Có mục tiêu mỗi học kỳ; nhận việc vừa sức, đúng giờ và đúng deadline.",
           "Khó khăn phải báo sớm; không ghost, không đổ lỗi hoặc bỏ dở việc tập thể.",
-          "Duy trì nhịp tự học tối thiểu hai giờ mỗi ngày theo định hướng phát triển.",
+          "Khuyến nghị tự học khoảng hai giờ mỗi ngày; đây không phải điều kiện bắt buộc.",
         ],
       },
       {
@@ -310,24 +309,22 @@ export const documents = {
   },
   expectations: {
     code: "VĂN HÓA / CAM KẾT",
-    title: "BCN KỲ VỌNG GÌ Ở THÀNH VIÊN?",
-    intro: "Chủ động học, giữ cam kết và cùng nhau tiến bộ.",
-    sections: expectations.map((item) => ({
-      title: item.title,
-      points: documentPoints(item.body),
-    })),
-    note: "Lịch hoạt động và yêu cầu tuyển cụ thể theo thông báo chính thức.",
+    title: "Trước khi tham gia BCN.",
+    intro: "Dành cho sinh viên khoa Công nghệ Thông tin, IUH. Không thu phí.",
+    sections: [
+      { title: "Điều kiện đầu vào", text: "Yêu cầu kỹ năng và các vòng tuyển K23 chưa chốt. Xem thông báo chính thức trên fanpage BCN." },
+      { title: "Thời gian tham gia", text: "Lịch, địa điểm và thời lượng tối thiểu chưa chốt. Tự học khoảng 2 giờ/ngày là khuyến nghị, không bắt buộc." },
+    ],
   },
   process: {
-    code: "GIA NHẬP / DISCOVER → REGISTER → TRY → COMMIT",
-    title: "TỪ TÒ MÒ ĐẾN ĐỒNG HÀNH.",
+    code: "GIA NHẬP / THÔNG TIN K23",
+    title: "THEO DÕI ĐỢT TUYỂN K23.",
     intro:
-      "Bốn giai đoạn gia nhập dự kiến để bạn hiểu BCN, trải nghiệm rồi tự quyết định có muốn tiếp tục.",
-    sections: entryProcess.map((item) => ({
-      title: item.name,
-      points: documentPoints(item.text),
-    })),
-    note: "Các yêu cầu thử thách cụ thể sẽ được cập nhật theo thông báo tuyển. Link đăng ký hiện đang chờ bổ sung.",
+      "Đợt tuyển K22 đã kết thúc. Lịch và các vòng tuyển K23 chưa chốt; thông tin sẽ cập nhật trên fanpage BCN.",
+    sections: [
+      { title: "Đối tượng và chi phí", points: ["Sinh viên khoa Công nghệ Thông tin, IUH. Không thu phí."] },
+      { title: "Thông tin đang chờ công bố", points: ["Điều kiện đầu vào, lịch tuyển và các vòng tuyển K23 chưa chốt.", "Lịch, địa điểm và thời lượng sinh hoạt tối thiểu chưa chốt."] },
+    ],
   },
 } satisfies Record<string, BcnDocument>;
 

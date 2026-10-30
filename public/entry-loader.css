@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "Chakra Petch";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/chakra-petch-700.ttf") format("truetype");
+}
+#entry-loader {
+  --entry-green: #2fff00;
+  --entry-neon-core: #e1ffd3;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  padding: calc(70px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left));
+  overflow: hidden;
+  color: #f6f8f3;
+  background: #060806;
+  color-scheme: dark;
+  font-family: "Chakra Petch", sans-serif;
+  opacity: 1;
+  transition: opacity 320ms ease;
+}
+#entry-loader *, #entry-loader *::before, #entry-loader *::after { box-sizing: border-box; }
+#entry-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#b1c99c08 1px, transparent 1px), linear-gradient(90deg, #b1c99c08 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000, transparent 70%);
+}
+.entry-loader__header {
+  position: absolute;
+  top: calc(24px + env(safe-area-inset-top));
+  left: calc(28px + env(safe-area-inset-left));
+  right: calc(28px + env(safe-area-inset-right));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font: 700 12px/1.5 "Chakra Petch", sans-serif;
+}
+.entry-loader__brand { display: flex; align-items: center; gap: 10px; }
+.entry-loader__brand img { display: block; border: 1px solid #414c39; border-radius: 8px; }
+.entry-loader__caption { color: #c1ccb9; }
+.entry-loader__content { position: relative; display: grid; justify-items: center; width: min(100%, 600px); text-align: center; }
+.entry-loader__scene { display: block; width: clamp(220px, 61vw, 350px); max-width: 100%; height: auto; overflow: hidden; }
+.entry-loader__name { display: block; margin: 6px 0 0; color: #fff; font: 700 clamp(28px, 5vw, 40px)/1.2 "Chakra Petch", sans-serif; letter-spacing: -.03em; }
+.entry-loader__unit { margin: 8px 0 0; color: #e0e7da; font: 700 13px/1.6 "Chakra Petch", sans-serif; }
+.entry-loader__status { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 26px 0 0; min-height: 22px; color: #c7d1c0; font: 700 12px/1.6 "Chakra Petch", sans-serif; }
+.entry-loader__lights { display: flex; gap: 4px; }
+.entry-loader__lights i { display: block; width: 5px; height: 12px; border-radius: 2px; background: #3d4835; }
+.entry-loader__trace { stroke-dasharray: 180; stroke-dashoffset: 180; }
+.entry-loader__body { opacity: 1; }
+.entry-loader__head, .entry-loader__arm, .entry-loader__legs, .entry-loader__greeting { opacity: 0; }
+.entry-loader__head { transform-origin: 200px 126px; }
+.entry-loader__arm-left { transform-origin: 133px 219px; }
+.entry-loader__arm-right { transform-origin: 267px 220px; }
+.entry-loader__eyes { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.entry-loader__smile { opacity: 0; }
+.entry-loader__badge { fill: #75836b; }
+.entry-loader__wave { transform-origin: 266px 220px; }
+/* A pale core and two green halos keep the edges bright and well defined. */
+.entry-loader__scene :is(.entry-loader__body, .entry-loader__head, .entry-loader__arm, .entry-loader__legs) {
+  filter: drop-shadow(0 0 1px #e1ffd3) drop-shadow(0 0 4px #2fff00) drop-shadow(0 0 10px #2fff00c7);
+}
+.entry-loader__scene :is(.entry-loader__body, .entry-loader__head, .entry-loader__arm, .entry-loader__legs)[stroke],
+.entry-loader__scene :is(.entry-loader__body, .entry-loader__head, .entry-loader__arm, .entry-loader__legs) [stroke] { stroke: var(--entry-neon-core); }
+.entry-loader__scene :is(.entry-loader__body, .entry-loader__head, .entry-loader__arm, .entry-loader__legs)[stroke-width="2"],
+.entry-loader__scene :is(.entry-loader__body, .entry-loader__head, .entry-loader__arm, .entry-loader__legs) [stroke-width="2"] { stroke-width: 2.6; }
+.entry-loader__scene .entry-loader__strut { stroke: #263620; }
+#entry-loader:is([data-step="power"], [data-step="hello"]) :is(.entry-loader__eyes, .entry-loader__badge, .entry-loader__antenna) { filter: drop-shadow(0 0 4px #2fff00); }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__head { animation: entry-head var(--entry-head-duration) var(--entry-head-at) cubic-bezier(.22,1,.36,1) both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__arm-left { animation: entry-arm-left var(--entry-left-arm-duration) var(--entry-left-arm-at) cubic-bezier(.22,1,.36,1) both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__arm-right { animation: entry-arm-right var(--entry-right-arm-duration) var(--entry-right-arm-at) cubic-bezier(.22,1,.36,1) both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__legs { animation: entry-legs var(--entry-legs-duration) var(--entry-legs-at) cubic-bezier(.22,1,.36,1) both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__eyes { animation: entry-eyes var(--entry-power-duration) var(--entry-power-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__smile { animation: entry-part-fade var(--entry-power-duration) var(--entry-power-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) :is(.entry-loader__badge, .entry-loader__antenna) { animation: entry-power var(--entry-power-duration) var(--entry-power-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__greeting { animation: entry-greeting var(--entry-hello-duration) var(--entry-hello-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__wave { animation: entry-wave var(--entry-wave-duration) var(--entry-wave-at) cubic-bezier(.4,0,.2,1) both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__trace { animation: entry-trace var(--entry-power-duration) var(--entry-power-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__lights i { animation: entry-light var(--entry-power-duration) var(--entry-power-at) ease both; }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__lights i:nth-child(2) { animation-delay: calc(var(--entry-power-at) + var(--entry-light-gap)); }
+#entry-loader:is([data-phase="booting"], [data-phase="leaving"]) .entry-loader__lights i:nth-child(3) { animation-delay: calc(var(--entry-power-at) + var(--entry-light-gap) * 2); }
+#entry-loader[data-phase="leaving"] { opacity: 0; }
+#entry-loader[data-paused="true"] * { animation-play-state: paused !important; }
+@keyframes entry-head { 0% { opacity: 0; transform: translate(-8px, -110px) rotate(-7deg); } 25% { opacity: 1; } 78% { opacity: 1; transform: translateY(4px) rotate(1deg); } 100% { opacity: 1; transform: none; } }
+@keyframes entry-arm-left { 0% { opacity: 0; transform: translateX(-130px) rotate(-18deg); } 25% { opacity: 1; } 80% { opacity: 1; transform: translateX(3px) rotate(2deg); } 100% { opacity: 1; transform: none; } }
+@keyframes entry-arm-right { 0% { opacity: 0; transform: translateX(130px) rotate(18deg); } 25% { opacity: 1; } 80% { opacity: 1; transform: translateX(-3px) rotate(-2deg); } 100% { opacity: 1; transform: none; } }
+@keyframes entry-legs { 0% { opacity: 0; transform: translateY(84px); } 25% { opacity: 1; } 80% { opacity: 1; transform: translateY(-3px); } 100% { opacity: 1; transform: none; } }
+@keyframes entry-part-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes entry-eyes { from { opacity: 0; transform: scaleY(.08); } to { opacity: 1; transform: scaleY(1); } }
+@keyframes entry-power { to { fill: var(--entry-green); } }
+@keyframes entry-greeting { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes entry-wave { 0%,100% { transform: rotate(0); } 35% { transform: rotate(-16deg); } 70% { transform: rotate(8deg); } }
+@keyframes entry-trace { to { stroke-dashoffset: 0; } }
+@keyframes entry-light { to { background: var(--entry-green); } }
+@media (max-width: 480px) {
+  .entry-loader__header { top: calc(16px + env(safe-area-inset-top)); left: calc(18px + env(safe-area-inset-left)); right: calc(18px + env(safe-area-inset-right)); font-size: 11px; }
+  .entry-loader__scene { width: min(74vw, 290px); }
+  .entry-loader__status { margin-top: 20px; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  #entry-loader { padding: calc(48px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left)); }
+  .entry-loader__header { top: calc(10px + env(safe-area-inset-top)); left: calc(20px + env(safe-area-inset-left)); right: calc(20px + env(safe-area-inset-right)); }
+  .entry-loader__brand img { width: 28px; height: 28px; }
+  .entry-loader__content { grid-template-columns: minmax(170px, 230px) minmax(0, 1fr); grid-template-rows: auto auto auto; justify-items: start; align-items: center; text-align: left; column-gap: 22px; }
+  .entry-loader__scene { grid-area: 1 / 1 / 4; width: min(100%, 64dvh); }
+  .entry-loader__name { grid-area: 1 / 2; align-self: end; font-size: 30px; }
+  .entry-loader__unit { grid-area: 2 / 2; align-self: start; font-size: 12px; }
+  .entry-loader__status { grid-area: 3 / 2; align-self: start; justify-content: start; margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #entry-loader { transition-duration: 140ms; }
+  #entry-loader .entry-loader__content * { transform: none !important; }
+  #entry-loader :is(.entry-loader__head, .entry-loader__arm, .entry-loader__legs, .entry-loader__eyes, .entry-loader__greeting) { animation-name: entry-part-fade !important; }
+  #entry-loader[data-phase="leaving"] .entry-loader__content * { animation: none !important; }
+  #entry-loader[data-phase="leaving"] :is(.entry-loader__head, .entry-loader__arm, .entry-loader__legs, .entry-loader__eyes, .entry-loader__smile, .entry-loader__greeting) { opacity: 1; }
+  #entry-loader[data-phase="leaving"] :is(.entry-loader__badge, .entry-loader__antenna) { fill: var(--entry-green); }
+  #entry-loader[data-phase="leaving"] .entry-loader__trace { stroke-dashoffset: 0; }
+  #entry-loader[data-phase="leaving"] .entry-loader__lights i { background: var(--entry-green); }
+}

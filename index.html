@@ -6,10 +6,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#0044ff" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="/entry-loader.css" />
     <meta
       name="description"
-      content="Khám phá Ban Công Nghệ qua bảy điểm chạm: bản sắc, văn hóa, lộ trình học và làm, hoạt động và hành trình gia nhập."
+      content="Tìm hiểu ngắn gọn về Ban Công Nghệ, IUH: BCN là gì, học gì, hoạt động, tinh thần thành viên và thông tin tham gia."
     />
     <link rel="icon" type="image/jpeg" href="./img/BCN_Logo.jpg" />
     <link
@@ -26,14 +27,29 @@
       type="font/ttf"
       crossorigin
     />
-    <title>Ban Công Nghệ | BCN.OS</title>
+    <title>Ban Công Nghệ · Đoàn khoa CNTT, IUH</title>
   </head>
   <body>
+    <div id="entry-loader" data-phase="waiting" data-step="body" role="region" aria-label="Đang mở Ban Công Nghệ">
+      <div class="entry-loader__header"><span class="entry-loader__brand"><img src="%BASE_URL%img/BCN_Logo.jpg" width="32" height="32" alt="" />Ban Công Nghệ</span><span class="entry-loader__caption">Lắp ráp robot BCN</span></div>
+      <div class="entry-loader__content">
+        <svg class="entry-loader__scene" viewBox="0 0 400 360" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <g stroke="#405036" stroke-width="1.5"><path class="entry-loader__trace" d="M20 112h35l18 18h14m-57 88h24l22-22h22M380 102h-32l-18 18h-16m60 130h-35l-15-15h-20"/><path class="entry-loader__trace" d="M36 154h26m276 21h26M84 308h29m174 0h29"/><circle cx="20" cy="112" r="4"/><circle cx="380" cy="102" r="4"/><circle cx="30" cy="218" r="4"/><circle cx="374" cy="250" r="4"/></g>
+          <ellipse cx="200" cy="336" rx="98" ry="8" fill="#131a10" />
+          <g class="entry-loader__legs" fill="#1c2419" stroke="#647559" stroke-width="2"><path d="M153 278v34m94-34v34" stroke-width="17"/><path class="entry-loader__strut" d="M153 278v34m94-34v34" stroke-width="13"/><rect x="130" y="311" width="51" height="19" rx="8"/><rect x="219" y="311" width="51" height="19" rx="8"/></g>
+          <g class="entry-loader__arm entry-loader__arm-left" stroke="#647559" stroke-width="2"><path d="M133 219l-27 19-7 30" stroke-width="19"/><path class="entry-loader__strut" d="M133 219l-27 19-7 30" stroke-width="15"/><circle cx="106" cy="238" r="9" fill="#222b1d"/><path d="m91 268-5 14m13-15 1 17m7-14 5 11" stroke="#bbc8ae" stroke-width="5"/></g>
+          <g class="entry-loader__arm entry-loader__arm-right"><g class="entry-loader__wave" stroke="#647559" stroke-width="2"><path d="m267 220 27-24 18 1" stroke-width="19"/><path class="entry-loader__strut" d="m267 220 27-24 18 1" stroke-width="15"/><circle cx="293" cy="196" r="9" fill="#222b1d"/><path d="m313 197 15-1m-12-8 12-7m-13 24 12 5" stroke="#bbc8ae" stroke-width="5"/></g></g>
+          <g class="entry-loader__body"><path d="M185 203v-12h30v12" fill="#313e28" stroke="#879779" stroke-width="2"/><rect x="129" y="201" width="142" height="87" rx="24" fill="#1b2217" stroke="#647559" stroke-width="2"/><path d="M151 213h98" stroke="#879779"/><circle cx="131" cy="220" r="6" fill="#0c1209" stroke="#839575"/><circle cx="269" cy="220" r="6" fill="#0c1209" stroke="#839575"/><rect x="169" y="229" width="62" height="30" rx="8" fill="#080d06" stroke="#46573c"/><text class="entry-loader__badge" x="200" y="249" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-size="17" font-weight="700">BCN</text><path d="M181 275h38" stroke="#74866a" stroke-width="3"/></g>
+          <g class="entry-loader__head"><path d="M200 65V44" stroke="#7a8c6d" stroke-width="5"/><circle class="entry-loader__antenna" cx="200" cy="37" r="7" fill="#526346" stroke="#859b75" stroke-width="2"/><rect x="89" y="103" width="24" height="43" rx="9" fill="#273021" stroke="#647559" stroke-width="2"/><rect x="287" y="103" width="24" height="43" rx="9" fill="#273021" stroke="#647559" stroke-width="2"/><rect x="104" y="65" width="192" height="123" rx="30" fill="#20291b" stroke="#8a9b7a" stroke-width="2"/><path d="M127 77h145" stroke="#b1c0a5" stroke-width="2"/><rect x="119" y="84" width="162" height="83" rx="19" fill="#080d06" stroke="#44563a"/><g class="entry-loader__eyes" fill="#2fff00"><rect x="148" y="110" width="25" height="20" rx="6"/><rect x="227" y="110" width="25" height="20" rx="6"/></g><path class="entry-loader__smile" d="M184 146q16 9 32 0" stroke="#93b67d" stroke-width="3"/><circle cx="118" cy="171" r="2" fill="#a7b69b"/><circle cx="282" cy="171" r="2" fill="#a7b69b"/></g>
+          <g class="entry-loader__greeting"><path d="M287 19h92a10 10 0 0 1 10 10v27a10 10 0 0 1-10 10h-60l-19 12 3-12h-16a10 10 0 0 1-10-10V29a10 10 0 0 1 10-10Z" fill="#172112" stroke="#789367" stroke-width="1.5"/><text x="333" y="49" text-anchor="middle" fill="#f6f8f3" font-family="Chakra Petch, sans-serif" font-size="15" font-weight="700">Hello World</text></g>
+        </svg>
+        <strong class="entry-loader__name">Ban Công Nghệ</strong>
+        <p class="entry-loader__unit">Đoàn Khoa CNTT, IUH</p>
+        <p class="entry-loader__status" role="status"><span class="entry-loader__lights" aria-hidden="true"><i></i><i></i><i></i></span><span data-entry-status>Đang lắp ráp robot BCN</span></p>
+      </div>
+    </div>
     <div id="root"></div>
-    <noscript
-      >Hãy bật JavaScript để khám phá hành trình tương tác của Ban Công
-      Nghệ.</noscript
-    >
+    <noscript><style>#entry-loader { display: none; }</style>Hãy bật JavaScript để khám phá hành trình tương tác của Ban Công Nghệ.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

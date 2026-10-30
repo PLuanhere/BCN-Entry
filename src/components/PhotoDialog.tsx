@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { RefObject } from "react";
-import { photoAlbums } from "../photoAlbums";
+import { photoAlbums, photoUrl } from "../photoAlbums";
 import type { PhotoAlbumId } from "../photoAlbums";
 import PhotoStory from "./PhotoStory";
 import { closeDialog, useDialogMotion } from "../useDialogMotion";
@@ -20,7 +20,7 @@ export default function PhotoDialog({
   const close = () => closeDialog(dialogRef.current);
   return (
     <dialog
-      className="content-dialog photo-dialog"
+      className="content-dialog fit-dialog photo-dialog"
       ref={dialogRef}
       aria-labelledby="photo-dialog-title"
       onClose={() => setSession((value) => value + 1)}
@@ -30,14 +30,13 @@ export default function PhotoDialog({
     >
       <div className="dialog-shell">
         <header className="dialog-header">
-          <span className="mono">BCN / {album.code}</span>
+          <span className="dialog-brand"><img src={photoUrl("BCN_Logo.jpg")} alt="" width="28" height="28" /><span>{album.code}</span></span>
           <button aria-label="Đóng bộ ảnh" onClick={close}>
             ×
           </button>
         </header>
-        <div className="dialog-scroll">
-          <h2 id="photo-dialog-title">{album.title}</h2>
-          <p className="body-copy photo-intro">{album.intro}</p>
+        <div className="dialog-scroll photo-dialog-body">
+          <div className="album-heading"><h2 id="photo-dialog-title">{album.title}</h2><p className="photo-intro">{album.intro}</p></div>
           <PhotoStory
             key={`${albumId}-${initialIndex}-${session}`}
             albumId={albumId}
