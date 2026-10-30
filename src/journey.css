@@ -2,11 +2,11 @@
 .newcomer-app { --journey-footer-height: 76px; }
 .newcomer-app .os-frame { grid-template-rows: auto minmax(0, 1fr) calc(var(--journey-footer-height) + env(safe-area-inset-bottom)); }
 .newcomer-app .primary-nav a { gap: 8px; }
-.nav-step { display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; border: 1px solid var(--control-line); border-radius: 50%; color: var(--nav-text); font: 600 11px/1 "Be Vietnam Pro", sans-serif; }
-.primary-nav a.is-visited .nav-step { border-color: #526348; color: #829b73; }
+.nav-step { display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; border: 1px solid var(--primary); border-radius: 50%; color: var(--primary); box-shadow: 0 0 6px #2fff0033; font: 600 11px/1 "Be Vietnam Pro", sans-serif; }
+.primary-nav a.is-visited .nav-step { border-color: var(--primary); color: var(--primary); }
 .primary-nav a[aria-current="page"] .nav-step { color: var(--on-primary); background: var(--nav-active); border-color: var(--nav-active); }
 .newcomer-app .primary-nav a[aria-disabled="true"], .newcomer-app .primary-nav a[aria-disabled="true"]:hover { color: var(--nav-muted); background: none; cursor: not-allowed; }
-.primary-nav a[aria-disabled="true"] .nav-step { color: var(--nav-muted); border-color: var(--control-line); }
+.primary-nav a[aria-disabled="true"] .nav-step { color: var(--nav-muted); border-color: var(--control-line); box-shadow: none; }
 .newcomer-app .journey-footer { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(220px, auto); align-items: center; gap: 20px; padding: 10px 28px calc(10px + env(safe-area-inset-bottom)); }
 .journey-footer .footer-center { min-width: 0; justify-self: center; }
 .journey-footer .page-count { font-size: 14px; line-height: 1.5; }
