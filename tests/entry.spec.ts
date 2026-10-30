@@ -116,7 +116,7 @@ test('6 hướng học truy cập được bằng chuột, chạm và bàn phím
 
 test('hoạt động và tinh thần đọc được mà không phải mở các lớp nội dung', async ({ page }) => {
   await page.goto('/#/activities');
-  await page.getByRole('tab', { name: 'NoCode', exact: true }).click();
+  await page.getByRole('tab', { name: 'Làm video (NoCode)', exact: true }).click();
   await expect(page.getByRole('tabpanel')).toContainText('Cùng làm video');
   await page.goto('/#/culture');
   await expect(page.locator('.value-card')).toHaveCount(3);

@@ -19,7 +19,7 @@ async function assertFrame(page: Page, label: string) {
         const r = el.getBoundingClientRect();
         return r.left < bounds.left - 1 || r.right > bounds.right + 1 || r.top < bounds.top - 1 || r.bottom > bounds.bottom + 1 || el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1;
       }).map(el => ({ element: el.className || el.tagName, text: el.textContent?.trim() }));
-    const containers = [main, stage, ...stage.querySelectorAll<HTMLElement>('.notice-scene,.notice-note,.workspace-copy,.workspace-scene,.activities-layout,.activities-copy,.values-grid,.value-card,.join-layout,.join-intro,.join-next')];
+    const containers = [main, stage, ...stage.querySelectorAll<HTMLElement>('.notice-scene,.notice-note,.workspace-copy,.workspace-scene,.activity-tabs,.activities-layout,.activities-copy,.values-grid,.value-card,.join-layout,.join-intro,.join-next')];
     const overflow = containers.filter(el => visible(el) && (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1)).map(el => ({ element: el.className, height: el.clientHeight, content: el.scrollHeight, width: el.clientWidth, contentWidth: el.scrollWidth }));
     const smallTargets = Array.from(document.querySelectorAll<HTMLElement>('.primary-nav a,.search-trigger,.journey-next,.page-prev,[role="tab"],main .text-action,.photo-controls button'))
       .filter(el => el.checkVisibility() && !el.closest('[aria-hidden="true"]')).filter(el => {
